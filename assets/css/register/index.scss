@@ -1,0 +1,37 @@
+.page-register {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  & > section {
+    width: 400px;
+    margin-top: 15vh;
+    box-sizing: border-box;
+    h1 {
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    .status {
+      font-size: 12px;
+      margin-left: 20px;
+      color: #e6a23c;
+    }
+    .el-button.register {
+      width: 100%;
+    }
+    .error {
+      color: red;
+    }
+    .btn-groups {
+      overflow: hidden;
+      & > .el-button {
+        float: right;
+      }
+      & > .el-button:nth-child(1) {
+        float: left;
+        a {
+          color: #999;
+        }
+      }
+    }
+  }
+}

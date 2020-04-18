@@ -1,0 +1,55 @@
+
+
+.layout-default {
+  -webkit-font-smoothing: antialiased;
+  font-family: "-apple-system",
+  BlinkMacSystemFont,
+  Roboto,
+  "Helvetica Neue",
+  "MIcrosoft YaHei",
+  sans-serif !important;
+  background-color: #F8F8F8;
+  height: 100%;
+  width: 100%;
+  background: url('https://img.xiaoyou66.com/images/2020/02/06/tKb5.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: scroll;
+  background-position: right bottom;
+  .el-header,.el-main,.el-footer {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    overflow: unset;
+  }
+  .el-main {
+    width: 1170px;
+    .main-content > .el-col:nth-child(1) > div {
+      width: 750px;
+      height: 100%;
+    }
+    .sidebar-box {
+      position: sticky;
+      top: 60px;
+    }
+  }
+}
+
+
+.layout-blank {
+  -webkit-font-smoothing: antialiased;
+  font-family: "-apple-system",
+  BlinkMacSystemFont,
+  Roboto,
+  "Helvetica Neue",
+  "MIcrosoft YaHei",
+  sans-serif !important;
+  background-color: #F8F8F8;
+  height: 100%;
+  width: 100%;
+  background: url('https://img.xiaoyou66.com/images/2020/02/06/tKb5.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: scroll;
+  background-position: right bottom;
+}

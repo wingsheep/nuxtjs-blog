@@ -25,7 +25,7 @@ module.exports = {
   css: [
     'element-ui/lib/theme-chalk/reset.css',
     'element-ui/lib/theme-chalk/index.css',
-    // 'ant-design-vue/dist/antd.css',
+    'aplayer/dist/APlayer.min.css',
     '@/assets/css/main.css'
   ],
   /*
@@ -33,7 +33,7 @@ module.exports = {
   */
   plugins: [
     '@/plugins/element-ui',
-    // '@/plugins/antd',
+    // { src: '@/plugins/Aplayer', ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -44,7 +44,7 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/axios',
+    '@nuxtjs/axios'
   ],
   axios: {
     proxy: true,
@@ -61,7 +61,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    transpile: [/^element-ui/],
+    transpile: [/^element-ui/, 'APlayer'],
     /*
     ** You can extend webpack config here
     */

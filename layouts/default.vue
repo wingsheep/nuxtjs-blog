@@ -16,6 +16,7 @@
     <el-footer>
       <my-footer/>
     </el-footer>
+    <SongPlayer />
   </el-container>
 </template>
 
@@ -23,11 +24,14 @@
   import MyHeader from '@/components/public/header/index.vue'
   import MyFooter from '@/components/public/footer/index.vue'
   import SideBar from '@/components/public/sidebar/index.vue'
+  import SongPlayer from '@/components/public/songplayer/index.vue'
+
   export default {
     components:{
       MyHeader,
       MyFooter,
-      SideBar
+      SideBar,
+      SongPlayer
     }
   }
 </script>

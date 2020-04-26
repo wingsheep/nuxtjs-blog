@@ -44,12 +44,13 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-      }
-    },
-  }
+   export default {
+     data() {
+       return {
+         key: ''
+       }
+     },
+   }
 </script>
 
 <style lang="scss" scoped>

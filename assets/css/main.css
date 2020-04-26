@@ -1,3 +1,5 @@
+@import './markdown/index.scss';
+
 @font-face {
   font-family: 'iconfont';
   /* project id 682850 */
@@ -65,3 +67,4 @@ footer{
   height: 100%;
   width: 100%;
 }
+

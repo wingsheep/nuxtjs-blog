@@ -30,24 +30,77 @@
           </dl>
         </el-col>
       </el-row>
-      <el-row class="detailed-content">
-        hhhhhhaaaaaaaa
-      </el-row>
+      <div class="markdown" v-html="code">
+      </div>
     </el-card>
   </div>
 </template>
 
 <script>
+  // import marked from 'marked'
+  // import hljs from "highlight.js";
+  // import javascript from 'highlight.js/lib/languages/javascript';
+  // import 'highlight.js/styles/atom-one-dark.css';
+  import markdown from '@/plugins/marked'
+
   export default {
     data() {
       return {
-        title: '年末，往事清零；余生，爱恨随意;'
+        title: '年末，往事清零；余生，爱恨随意;',
+        code:`
+#### 前端
+  跳转到github授权页 回调拿到code 
+  将code传递给前端 
+
+#### ![](https://cdn.jsdelivr.net/gh/Thawsoar/FigureBed@master/img/20200418224757.png) 
+
+#### 后台服务
+
+> https://eggjs.org/zh-cn/tutorials/passport.html
+
+1. 安装包
+
+2. 配置
+ 
+   
+
+3. 写接口
+
+   - 拿到前端传入的code值 请求token
+
+   - 拿到token 再请求用户信息 返回给前端
+
+     > https://eggjs.org/zh-cn/core/httpclient.html#get
+
+![](https://cdn.jsdelivr.net/gh/Thawsoar/FigureBed@master/img/20200418224421.png)
+`
       }
     },
+    mounted(){
+      this.$nextTick(() => {
+        // marked.setOptions({
+        //   renderer: new marked.Renderer(),
+        //   highlight: function(code) {
+        //     return hljs.highlightAuto(code).value;
+        //   },
+        //   pedantic: false,
+        //   gfm: true,
+        //   tables: true,
+        //   breaks: false,
+        //   sanitize: false,
+        //   smartLists: true,
+        //   smartypants: false,
+        //   xhtml: false
+        // })
+
+        this.code = markdown(this.code)
+      })
+    }
   }
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/css/markdown/index.scss';
 .page-detailed {
   .el-card {
     header {

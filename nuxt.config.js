@@ -27,6 +27,7 @@ module.exports = {
     'element-ui/lib/theme-chalk/index.css',
     'aplayer/dist/APlayer.min.css',
     '@/assets/css/main.css',
+    '@/assets/css/markdown/index.scss',
   ],
   /*
   ** Plugins to load before mounting the App

@@ -68,13 +68,13 @@
     padding-left: 2em;
 
     li {
-      padding: .3em;
+      padding: 0;
       list-style: decimal;
     }
   }
 
 
-  /deep/ .image-wrapper {
+  .image-wrapper {
     display: flex;
     flex-direction: column;
     margin: 1.5em 0;

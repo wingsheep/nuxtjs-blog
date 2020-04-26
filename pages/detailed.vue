@@ -30,27 +30,24 @@
           </dl>
         </el-col>
       </el-row>
-      <div class="markdown" v-html="code">
+      <div v-show="formatCODE" class="markdown" v-html="formatCODE">
       </div>
     </el-card>
   </div>
 </template>
 
 <script>
-  // import marked from 'marked'
-  // import hljs from "highlight.js";
-  // import javascript from 'highlight.js/lib/languages/javascript';
-  // import 'highlight.js/styles/atom-one-dark.css';
   import markdown from '@/plugins/marked'
 
   export default {
     data() {
       return {
         title: '年末，往事清零；余生，爱恨随意;',
+        formatCODE: '',
         code:`
 #### 前端
-  跳转到github授权页 回调拿到code 
-  将code传递给前端 
+  - 跳转到github授权页 回调拿到code 
+  - 将code传递给前端 
 
 #### ![](https://cdn.jsdelivr.net/gh/Thawsoar/FigureBed@master/img/20200418224757.png) 
 
@@ -78,29 +75,13 @@
     },
     mounted(){
       this.$nextTick(() => {
-        // marked.setOptions({
-        //   renderer: new marked.Renderer(),
-        //   highlight: function(code) {
-        //     return hljs.highlightAuto(code).value;
-        //   },
-        //   pedantic: false,
-        //   gfm: true,
-        //   tables: true,
-        //   breaks: false,
-        //   sanitize: false,
-        //   smartLists: true,
-        //   smartypants: false,
-        //   xhtml: false
-        // })
-
-        this.code = markdown(this.code)
+        this.formatCODE = markdown(this.code)
       })
     }
   }
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/css/markdown/index.scss';
 .page-detailed {
   .el-card {
     header {

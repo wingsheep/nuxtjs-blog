@@ -2,7 +2,7 @@
   <div class="page-detailed">
     <el-card>
       <header>
-        <h1>{{title}}</h1>
+        <h1>{{detail.title}}</h1>
       </header>
       <el-row class="detailed-info">
         <el-col :span="24">
@@ -30,6 +30,10 @@
           </dl>
         </el-col>
       </el-row>
+      <div>
+        <p>{{detail.description}}</p>
+        <img style="height: 200px;width: 100%" :src="detail.img_url" alt="">
+      </div>
       <div v-show="formatCODE" class="markdown" v-html="formatCODE">
       </div>
     </el-card>
@@ -44,38 +48,25 @@
       return {
         title: '年末，往事清零；余生，爱恨随意;',
         formatCODE: '',
-        code:`
-#### 前端
-  - 跳转到github授权页 回调拿到code 
-  - 将code传递给前端 
-
-#### ![](https://cdn.jsdelivr.net/gh/Thawsoar/FigureBed@master/img/20200418224757.png) 
-
-#### 后台服务
-
-> https://eggjs.org/zh-cn/tutorials/passport.html
-
-1. 安装包
-
-2. 配置
- 
-   
-
-3. 写接口
-
-   - 拿到前端传入的code值 请求token
-
-   - 拿到token 再请求用户信息 返回给前端
-
-     > https://eggjs.org/zh-cn/core/httpclient.html#get
-
-![](https://cdn.jsdelivr.net/gh/Thawsoar/FigureBed@master/img/20200418224421.png)
-`
+        code: '',
+      }
+    },
+    async asyncData({app, params}) {
+      const url = `/api/v1/articles/${params.id}`
+      const { data: { result, data } } = await app.$axios.get(url)
+      if (result) {
+        return {
+          detail: data
+        }
+      } else {
+        return {
+          articleList: []
+        }
       }
     },
     mounted(){
       this.$nextTick(() => {
-        this.formatCODE = markdown(this.code)
+        this.formatCODE = markdown(this.detail.content)
       })
     }
   }

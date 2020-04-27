@@ -1,20 +1,20 @@
 <template>
   <div class="article-card">
     <el-row class="card">
-      <img :src="require('assets/img/test.jpg')" alt="">
+      <img :src="articleData.img_url" alt="">
       <div class="info">
         <div class="header">
           <nuxt-link to="/detailed" class="label">随笔</nuxt-link>
-          <h2><nuxt-link to="/detailed" >年末，往事清零；余生，爱恨随意</nuxt-link></h2>
+          <h2><nuxt-link :to="`detailed/${articleData.id}`" >{{articleData.title}}</nuxt-link></h2>
         </div>
-        <p>天长地久有时尽，此爱绵绵终有期。回望刚刚过去的2019年，自己也许应该成长了许多吧</p>
+        <p>{{articleData.description}}</p>
       </div>
       <el-row class="content-footer">
         <el-col :span="20">
           <dl>
              <dd :span="5">
                 <i class="el-icon-date"></i>
-                <a>2020年3月25日</a>
+                <a>{{articleData.date}}</a>
              </dd>
              <dd :span="3">
                 <i class="el-icon-s-comment"></i>
@@ -45,6 +45,12 @@
 
 <script>
    export default {
+     props: {
+       articleData: {
+         type: Object,
+         default: () => {}
+       },
+     },
      data() {
        return {
          key: ''

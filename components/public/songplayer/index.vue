@@ -10,7 +10,7 @@
   export default {
     methods: {
       async getSongList() {
-        const playlistId = 2158283120
+        const playlistId = 4989885272
         const {data: {playlist: {tracks}}} = await this.$axios(`https://v1.hitokoto.cn/nm/playlist/${playlistId}`)
         const Ids = [];
         tracks.map(function (value) {

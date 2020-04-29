@@ -6,7 +6,10 @@
   @media (max-width: 479px) {
     font-size: 14px;
   }
-
+  img {
+    width: 100%;
+    height: 100%
+  }
   pre {
     margin: .5em 0;
     padding: 1em;

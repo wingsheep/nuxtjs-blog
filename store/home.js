@@ -1,4 +1,4 @@
-export const state = () => ({menu: [], hotPlace: []})
+export const state = () => ({ menu: [], hotPlace: [] })
 
 export const mutations = {
   setMenu(state, val) {

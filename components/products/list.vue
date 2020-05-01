@@ -12,7 +12,8 @@
       <Item
         v-for="(item,idx) in list"
         :key="idx"
-        :meta="item"/>
+        :meta="item"
+      />
     </ul>
   </div>
 </template>
@@ -25,11 +26,15 @@ export default {
   },
   props: {
     list: {
-      type:Array,
-      default(){
+      type: Array,
+      default() {
         return []
       }
     }
+  },
+  async asyncData({ app }) {
+    const { data } = await app.$axios.get('searchList')
+    return { items: data.list }
   },
   data() {
     return {
@@ -54,12 +59,8 @@ export default {
       ]
     }
   },
-  async asyncData({app}) {
-    let { data } = await app.$axios.get('searchList')
-    return { items: data.list }
-  },
   methods: {
-    navSelect: function () {
+    navSelect: function() {
       console.log('select')
     }
   }

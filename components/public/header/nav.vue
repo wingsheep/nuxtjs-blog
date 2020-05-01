@@ -1,10 +1,10 @@
 <template>
   <div class="m-nav">
     <ul class="nav">
-      <li class="list" v-for="(item, index) in navList" :key="index">
+      <li v-for="(item, index) in navList" :key="index" class="list">
         <nuxt-link :to="item.path">
-          <i :class="item.icon"></i>
-          {{item.name}}
+          <i :class="item.icon" />
+          {{ item.name }}
         </nuxt-link>
       </li>
       <li class="list right">
@@ -61,11 +61,11 @@ export default {
           path: '/about',
           name: '关于',
           icon: 'el-icon-user'
-        },
+        }
 
       ]
     }
-  },
+  }
 }
 </script>
 

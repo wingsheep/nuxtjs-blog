@@ -22,9 +22,9 @@ const languages = [
   'scss',
   'sql',
   'stylus'
-];
+]
 
-const renderer = new marked.Renderer();
+const renderer = new marked.Renderer()
 
 marked.setOptions({
   renderer,
@@ -40,7 +40,7 @@ marked.setOptions({
       return highlight.highlight(lang, code).value
     }
     return highlight.highlightAuto(code).value
-  },
+  }
 })
 
 const imageParse = (src, title, alt) => {

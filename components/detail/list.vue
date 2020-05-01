@@ -5,7 +5,8 @@
       <item
         v-for="(item,idx) in list"
         :key="idx"
-        :meta="item" />
+        :meta="item"
+      />
     </ul>
   </div>
 </template>
@@ -18,11 +19,11 @@ export default {
   },
   props: {
     list: {
-      type:Array,
-      default:()=>{
+      type: Array,
+      default: () => {
         return []
       }
     }
-  },
+  }
 }
 </script>

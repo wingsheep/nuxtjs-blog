@@ -3,34 +3,34 @@
     <div class="motto-content">
       <div id="hitokoto" class="hitokoto-fullpage">
         <div class="bracket left">『</div>
-        <div class="word" id="hitokoto_text">{{hitokoto.hitokoto}}</div>
+        <div id="hitokoto_text" class="word">{{ hitokoto.hitokoto }}</div>
         <div class="bracket right">』</div>
-      <div class="author" id="hitokoto_author">—— 「{{hitokoto.from}}」</div></div>
+        <div id="hitokoto_author" class="author">—— 「{{ hitokoto.from }}」</div></div>
     </div>
   </div>
 </template>
 
 <script>
-  import axios from 'axios'
-  export default {
-    data() {
-      return {
-         hitokoto: {}
-      }
-    },
-    created () {
-      this.getData()
-    },
-    methods: {
-      getData() {
-         axios.get('https://v1.hitokoto.cn')
+import axios from 'axios'
+export default {
+  data() {
+    return {
+      hitokoto: {}
+    }
+  },
+  created() {
+    this.getData()
+  },
+  methods: {
+    getData() {
+      axios.get('https://v1.hitokoto.cn')
         .then(({ data }) => {
           this.hitokoto = data
         })
         .catch(console.error)
-        },
-      }
     }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

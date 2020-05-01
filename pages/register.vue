@@ -7,49 +7,56 @@
           ref="ruleForm"
           :model="ruleForm"
           :rules="rules"
-          label-width="0">
+          label-width="0"
+        >
           <el-form-item label="" prop="name">
             <el-input
+              v-model="ruleForm.name"
               prefix-icon="el-icon-user"
-              v-model="ruleForm.name" 
-              placeholder="昵称" />
+              placeholder="昵称"
+            />
           </el-form-item>
           <el-form-item label="" prop="email">
-            <el-input 
-              prefix-icon="el-icon-message" 
-              v-model="ruleForm.email" 
-              placeholder="邮箱" />
+            <el-input
+              v-model="ruleForm.email"
+              prefix-icon="el-icon-message"
+              placeholder="邮箱"
+            />
             <span class="status">{{ statusMsg }}</span>
           </el-form-item>
           <el-form-item label="" prop="code">
             <el-input
               v-model="ruleForm.code"
               maxlength="4"
-              placeholder="验证码">
+              placeholder="验证码"
+            >
               <el-button
-                type="primary"
                 slot="append"
+                type="primary"
+                icon="el-icon-send"
                 @click="sendMsg"
-                icon="el-icon-send">
+              >
                 发送验证码
               </el-button>
             </el-input>
           </el-form-item>
           <el-form-item label="" prop="pwd">
-            <el-input 
+            <el-input
+              v-model="ruleForm.pwd"
               prefix-icon="el-icon-lock"
               suffix-icon="el-icon-circle-check"
-              v-model="ruleForm.pwd"
               type="password"
-              placeholder="密码"/>
+              placeholder="密码"
+            />
           </el-form-item>
           <el-form-item label="" prop="cpwd">
             <el-input
+              v-model="ruleForm.cpwd"
               prefix-icon="el-icon-lock"
               suffix-icon="el-icon-circle-check"
-              v-model="ruleForm.cpwd"
               type="password"
-              placeholder="确认密码"/>
+              placeholder="确认密码"
+            />
           </el-form-item>
           <el-form-item>
             <el-button class="register" type="primary" @click="register">注册</el-button>
@@ -126,8 +133,8 @@ export default {
   },
   layout: 'blank',
   methods: {
-    sendMsg: function () {
-      const self = this;
+    sendMsg: function() {
+      const self = this
       let namePass
       let emailPass
       if (self.timerid) {
@@ -153,9 +160,9 @@ export default {
           data
         }) => {
           if (status === 200 && data && data.code === 0) {
-            let count = 60;
+            let count = 60
             self.statusMsg = `验证码已发送,剩余${count--}秒`
-            self.timerid = setInterval(function () {
+            self.timerid = setInterval(function() {
               self.statusMsg = `验证码已发送,剩余${count--}秒`
               if (count === 0) {
                 clearInterval(self.timerid)
@@ -167,8 +174,8 @@ export default {
         })
       }
     },
-    register: function () {
-      let self = this;
+    register: function() {
+      const self = this
       this.$refs['ruleForm'].validate((valid) => {
         if (valid) {
           self.$axios.post('/users/signup', {
@@ -189,7 +196,7 @@ export default {
             } else {
               self.error = `服务器出错，错误码:${status}`
             }
-            setTimeout(function () {
+            setTimeout(function() {
               self.error = ''
             }, 1500)
           })

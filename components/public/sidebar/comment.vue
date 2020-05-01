@@ -8,15 +8,15 @@
     <ul>
       <li v-for="(item, index) in commentList" :key="index">
         <div class="img">
-          <img v-if="item.avator" :onerror="item.avator === ''" :src="item.avator" alt=""/>
-          <span v-else>{{item.name.slice(0, 1)}}</span>
+          <img v-if="item.avator" :onerror="item.avator === ''" :src="item.avator" alt="">
+          <span v-else>{{ item.name.slice(0, 1) }}</span>
         </div>
         <div class="content">
           <p>
-            <span>{{item.name}}</span>
-            <span>({{item.date}})</span>
+            <span>{{ item.name }}</span>
+            <span>({{ item.date }})</span>
           </p>
-          <span>{{item.content}}</span>
+          <span>{{ item.content }}</span>
         </div>
       </li>
     </ul>
@@ -24,42 +24,42 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        commentList: [
-          {
-            date: '2019年1月',
-            content: '666666666666666666666666666666',
-            avator: 'https://avatars3.githubusercontent.com/u/499550?s=400&u=de41ec9325e8a92e281b96a1514a0fd1cd81ad4a&v=4',
-            name: '尤小右',
-            count: 15
-          },
-          {
-            date: '2019年1月',
-            content: '哈哈哈哈哈哈哈哈',
-             avator: '',
-            name: '罗小黑',
-            count: 15
-          },
-          {
-            date: '2019年1月',
-            content: '666666666666666666666666666666',
-            avator: 'https://avatars3.githubusercontent.com/u/499550?s=400&u=de41ec9325e8a92e281b96a1514a0fd1cd81ad4a&v=4',
-            name: '尤小右',
-            count: 15
-          },
-          {
-            date: '2019年1月',
-            content: '哈哈哈哈哈哈哈哈',
-            avator: '',
-            name: '罗小黑',
-            count: 15
-          },
-        ]
-      }
-    },
+export default {
+  data() {
+    return {
+      commentList: [
+        {
+          date: '2019年1月',
+          content: '666666666666666666666666666666',
+          avator: 'https://avatars3.githubusercontent.com/u/499550?s=400&u=de41ec9325e8a92e281b96a1514a0fd1cd81ad4a&v=4',
+          name: '尤小右',
+          count: 15
+        },
+        {
+          date: '2019年1月',
+          content: '哈哈哈哈哈哈哈哈',
+          avator: '',
+          name: '罗小黑',
+          count: 15
+        },
+        {
+          date: '2019年1月',
+          content: '666666666666666666666666666666',
+          avator: 'https://avatars3.githubusercontent.com/u/499550?s=400&u=de41ec9325e8a92e281b96a1514a0fd1cd81ad4a&v=4',
+          name: '尤小右',
+          count: 15
+        },
+        {
+          date: '2019年1月',
+          content: '哈哈哈哈哈哈哈哈',
+          avator: '',
+          name: '罗小黑',
+          count: 15
+        }
+      ]
+    }
   }
+}
 </script>
 
 <style lang="scss" scoped>

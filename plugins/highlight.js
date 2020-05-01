@@ -1,4 +1,4 @@
-const  highlight = require('highlight.js');
+const highlight = require('highlight.js')
 highlight.registerLanguage('cpp', require('highlight.js/lib/languages/cpp'))
 highlight.registerLanguage('xml', require('highlight.js/lib/languages/xml'))
 highlight.registerLanguage('bash', require('highlight.js/lib/languages/bash'))
@@ -19,7 +19,7 @@ highlight.registerLanguage('sql', require('highlight.js/lib/languages/sql'))
 highlight.registerLanguage('stylus', require('highlight.js/lib/languages/stylus'))
 
 highlight.configure({
-  classPrefix: 'hljs-'     // class 样式前缀
+  classPrefix: 'hljs-' // class 样式前缀
 })
 
 module.exports = highlight

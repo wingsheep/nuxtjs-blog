@@ -2,7 +2,7 @@
   <div class="m-header">
     <el-row>
       <el-col>
-        <top-bar/>
+        <top-bar />
       </el-col>
       <el-col>
         <motto />
@@ -16,7 +16,7 @@ import topBar from './topbar.vue'
 import searchBar from './searchbar.vue'
 import motto from './motto.vue'
 export default {
-  components:{
+  components: {
     topBar,
     searchBar,
     motto

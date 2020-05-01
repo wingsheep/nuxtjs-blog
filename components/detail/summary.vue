@@ -4,7 +4,8 @@
       <h1>{{ meta.name }}</h1>
       <el-rate
         v-model="rate"
-        disabled />
+        disabled
+      />
       <span>{{ Number(meta.biz_ext.rating)||rate }}分</span>
       <span>人均￥{{ Number(meta.biz_ext.cost) }}</span>
       <ul>
@@ -15,15 +16,18 @@
     <dd>
       <el-carousel
         height="214px"
-        indicator-position="none">
+        indicator-position="none"
+      >
         <el-carousel-item
           v-for="(item,idx) in meta.photos"
-          :key="idx">
+          :key="idx"
+        >
           <h3><img
             :src="item.url"
             alt="item.title"
             width="100%"
-            height="100%"></h3>
+            height="100%"
+          ></h3>
         </el-carousel-item>
       </el-carousel>
     </dd>
@@ -34,8 +38,8 @@
 export default {
   props: {
     meta: {
-      type:Object,
-      default:()=>{
+      type: Object,
+      default: () => {
         return {}
       }
     }
@@ -46,12 +50,12 @@ export default {
     }
   },
   computed: {
-    rate: function () {
+    rate: function() {
       return Number(this.meta.biz_ext.rating) || Math.floor(Math.random() * 5)
     }
   },
   methods: {
-    openMap: function (location) {
+    openMap: function(location) {
 
     }
   }

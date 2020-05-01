@@ -9,20 +9,20 @@
 </template>
 
 <script>
-  import userInfo from './userInfo';
-  import archive from './archive';
-  import articleTabs from './articleTabs';
-  import tags from './tags';
-  import comment from './comment';
-  export default {
-    components: {
-      userInfo,
-      archive,
-      articleTabs,
-      tags,
-      comment
-    },
+import userInfo from './userInfo'
+import archive from './archive'
+import articleTabs from './articleTabs'
+import tags from './tags'
+import comment from './comment'
+export default {
+  components: {
+    userInfo,
+    archive,
+    articleTabs,
+    tags,
+    comment
   }
+}
 </script>
 
 <style lang="scss" scoped>

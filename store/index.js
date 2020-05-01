@@ -2,14 +2,13 @@
 // import Vuex from 'vuex'
 // import geo from './geo'
 // import home from './home'
-import axios from 'axios'
 // Vue.use(Vuex)
 
 // const store = () => new Vuex.Store({
-  // modules: {
-  //   geo,
-  //   home
-  // },
+// modules: {
+//   geo,
+//   home
+// },
 //   actions: {
 //     async nuxtServerInit({
 //       commit

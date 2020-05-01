@@ -1,6 +1,6 @@
 <template>
   <el-card class="user-info" :body-style="{padding: 0}">
-    <div class="photo-background"></div>
+    <div class="photo-background" />
     <div class="photo-wrapper clearfix">
       <div class="photo-wrapper-tip text-center">
         <a>
@@ -10,14 +10,14 @@
     </div>
     <div class="tips">
       <p><span> 你好，我叫罗小黑，很高兴在此与你相遇！</span>
-    </p>
+      </p>
     </div>
   </el-card>
 </template>
 <script>
-  export default {
-    
-  }
+export default {
+
+}
 </script>
 
 <style lang="scss" scoped>

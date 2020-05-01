@@ -1,13 +1,13 @@
-import Router from 'koa-router';
+import Router from 'koa-router'
 import axios from './utils/axios'
 import Province from '../dbs/models/province'
 
-let router = new Router({prefix: '/geo'})
+const router = new Router({ prefix: '/geo' })
 
-const sign = 'abcd';
+const sign = 'abcd'
 
-router.get('/getPosition', async (ctx) => {
-  let {
+router.get('/getPosition', async(ctx) => {
+  const {
     status,
     data: {
       province,
@@ -27,7 +27,7 @@ router.get('/getPosition', async (ctx) => {
   }
 })
 
-router.get('/province', async (ctx) => {
+router.get('/province', async(ctx) => {
   // let province = await Province.find()
   // ctx.body = {
   //   province: province.map(item => {
@@ -37,9 +37,9 @@ router.get('/province', async (ctx) => {
   //     }
   //   })
   // }
-  let {status, data: {
-      province
-    }} = await axios.get(`http://cp-tools.cn/geo/province?sign=${sign}`)
+  const { status, data: {
+    province
+  }} = await axios.get(`http://cp-tools.cn/geo/province?sign=${sign}`)
   ctx.body = {
     province: status === 200
       ? province
@@ -47,7 +47,7 @@ router.get('/province', async (ctx) => {
   }
 })
 
-router.get('/province/:id', async (ctx) => {
+router.get('/province/:id', async(ctx) => {
   // let city = await City.findOne({id: ctx.params.id})
   //
   // ctx.body = {
@@ -56,9 +56,9 @@ router.get('/province/:id', async (ctx) => {
   //     return {province: item.province, id: item.id, name: item.name}
   //   })
   // }
-  let {status, data: {
-      city
-    }} = await axios.get(`http://cp-tools.cn/geo/province/${ctx.params.id}?sign=${sign}`)
+  const { status, data: {
+    city
+  }} = await axios.get(`http://cp-tools.cn/geo/province/${ctx.params.id}?sign=${sign}`)
   if (status === 200) {
     ctx.body = {
       city
@@ -70,7 +70,7 @@ router.get('/province/:id', async (ctx) => {
   }
 })
 
-router.get('/city', async (ctx) => {
+router.get('/city', async(ctx) => {
   // let city = []
   // let result = await City.find()
   // result.forEach(item => {
@@ -88,9 +88,9 @@ router.get('/city', async (ctx) => {
   //     }
   //   })
   // }
-  let {status, data: {
-      city
-    }} = await axios.get(`http://cp-tools.cn/geo/city?sign=${sign}`);
+  const { status, data: {
+    city
+  }} = await axios.get(`http://cp-tools.cn/geo/city?sign=${sign}`)
   if (status === 200) {
     ctx.body = {
       city
@@ -102,7 +102,7 @@ router.get('/city', async (ctx) => {
   }
 })
 
-router.get('/hotCity', async (ctx) => {
+router.get('/hotCity', async(ctx) => {
   // let list = [
   //   '北京市',
   //   '上海市',
@@ -123,9 +123,9 @@ router.get('/hotCity', async (ctx) => {
   // ctx.body = {
   //   hots: nList
   // }
-  let {status, data: {
-      hots
-    }} = await axios.get(`http://cp-tools.cn/geo/hotCity?sign=${sign}`);
+  const { status, data: {
+    hots
+  }} = await axios.get(`http://cp-tools.cn/geo/hotCity?sign=${sign}`)
   if (status === 200) {
     ctx.body = {
       hots
@@ -137,14 +137,14 @@ router.get('/hotCity', async (ctx) => {
   }
 })
 
-router.get('/menu', async (ctx) => {
+router.get('/menu', async(ctx) => {
   // const result = await Menu.findOne()
   // ctx.body = {
   //   menu: result.menu
   // }
-  let {status, data: {
-      menu
-    }} = await axios.get(`http://cp-tools.cn/geo/menu?sign=${sign}`);
+  const { status, data: {
+    menu
+  }} = await axios.get(`http://cp-tools.cn/geo/menu?sign=${sign}`)
   if (status === 200) {
     ctx.body = {
       menu
@@ -156,4 +156,4 @@ router.get('/menu', async (ctx) => {
   }
 })
 
-export default router;
+export default router

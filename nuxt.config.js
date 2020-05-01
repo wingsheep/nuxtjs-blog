@@ -18,7 +18,7 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#51aded' },
   /*
   ** Global CSS
   */
@@ -27,14 +27,14 @@ module.exports = {
     'element-ui/lib/theme-chalk/index.css',
     'aplayer/dist/APlayer.min.css',
     '@/assets/css/main.css',
-    '@/assets/css/markdown/index.scss',
+    '@/assets/css/markdown/index.scss'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
     '@/plugins/element-ui',
-    // { src: '@/plugins/Aplayer', ssr: false }
+    '@/plugins/route'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -47,16 +47,21 @@ module.exports = {
   modules: [
     '@nuxtjs/axios'
   ],
+  router: {
+    // scrollBehavior(to, from, savedPosition) {
+    //   return { x: 0, y: 0 }
+    // }
+  },
   axios: {
     proxy: true,
     // baseURL: process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:7001/' : 'http://cboy.eyuanxing.cn:7001/'
     baseURL: 'http://localhost:7001/'
   },
   proxy: {
-    '/api/': 'http://127.0.0.1:7001/',
+    '/blog': 'http://127.0.0.1:7001/',
     '/public/': {
-      target: 'http://127.0.0.1:7001/',
-    },
+      target: 'http://127.0.0.1:7001/'
+    }
   },
   /*
   ** Build configuration
@@ -66,13 +71,13 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
+    extend(config, ctx) {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
+          // loader: 'eslint-loader',
           exclude: /(node_modules)/
         })
       }

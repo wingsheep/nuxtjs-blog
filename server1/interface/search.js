@@ -1,11 +1,11 @@
-import Router from 'koa-router';
+import Router from 'koa-router'
 import axios from './utils/axios'
 import Poi from '../dbs/models/poi'
 // import sign from './utils/sign'
 
-let router = new Router({prefix: '/search'})
+const router = new Router({ prefix: '/search' })
 
-router.get('/top', async (ctx) => {
+router.get('/top', async(ctx) => {
   // try {
   //   let top = await Poi.find({
   //     'name': new RegExp(ctx.query.input),
@@ -27,12 +27,12 @@ router.get('/top', async (ctx) => {
   //     top: []
   //   }
   // }
-  let {status, data: {
-      top
-    }} = await axios.get(`http://cp-tools.cn/search/top`, {
+  const { status, data: {
+    top
+  }} = await axios.get(`http://cp-tools.cn/search/top`, {
     params: {
       input: ctx.query.input,
-      city: ctx.query.city,
+      city: ctx.query.city
       // sign
     }
   })
@@ -43,7 +43,7 @@ router.get('/top', async (ctx) => {
   }
 })
 
-router.get('/hotPlace', async (ctx) => {
+router.get('/hotPlace', async(ctx) => {
   // let city = ctx.store ? ctx.store.geo.position.city : ctx.query.city
   // try {
   //   let result = await Poi.find({
@@ -66,12 +66,12 @@ router.get('/hotPlace', async (ctx) => {
   //     result: []
   //   }
   // }
-  let city = ctx.store
+  const city = ctx.store
     ? ctx.store.geo.position.city
     : ctx.query.city
-  let {status, data: {
-      result
-    }} = await axios.get(`http://cp-tools.cn/search/hotPlace`, {
+  const { status, data: {
+    result
+  }} = await axios.get(`http://cp-tools.cn/search/hotPlace`, {
     params: {
       // sign,
       city
@@ -84,9 +84,9 @@ router.get('/hotPlace', async (ctx) => {
   }
 })
 
-router.get('/resultsByKeywords', async (ctx) => {
-  const {city, keyword} = ctx.query;
-  let {
+router.get('/resultsByKeywords', async(ctx) => {
+  const { city, keyword } = ctx.query
+  const {
     status,
     data: {
       count,
@@ -95,7 +95,7 @@ router.get('/resultsByKeywords', async (ctx) => {
   } = await axios.get('http://cp-tools.cn/search/resultsByKeywords', {
     params: {
       city,
-      keyword,
+      keyword
       // sign
     }
   })
@@ -107,10 +107,10 @@ router.get('/resultsByKeywords', async (ctx) => {
   }
 })
 
-router.get('/products', async (ctx) => {
-  let keyword = ctx.query.keyword || '旅游'
-  let city = ctx.query.city || '北京'
-  let {
+router.get('/products', async(ctx) => {
+  const keyword = ctx.query.keyword || '旅游'
+  const city = ctx.query.city || '北京'
+  const {
     status,
     data: {
       product,
@@ -119,20 +119,20 @@ router.get('/products', async (ctx) => {
   } = await axios.get('http://cp-tools.cn/search/products', {
     params: {
       keyword,
-      city,
+      city
       // sign
     }
   })
   if (status === 200) {
     ctx.body = {
       product,
-      more: ctx.isAuthenticated() ? more: [],
+      more: ctx.isAuthenticated() ? more : [],
       login: ctx.isAuthenticated()
     }
-  }else{
+  } else {
     ctx.body = {
       product: {},
-      more: ctx.isAuthenticated() ? more: [],
+      more: ctx.isAuthenticated() ? more : [],
       login: ctx.isAuthenticated()
     }
   }

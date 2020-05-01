@@ -1,14 +1,15 @@
 <template>
   <div class="page-index">
     <div class="article-list">
-      <Article :articleData="item" v-for="(item, index) in articleList" :key="index" />
-      <el-pagination
-        background
+      <Article v-for="(item, index) in articleList" :key="index" :article-data="item" />
+      <pagination
+        v-show="total>0"
+        :total="total"
         layout="prev, pager, next"
-        :total="1000">
-      </el-pagination>
-      <pagination v-show="total>0" :total="total" layout="prev, pager, next" :page.sync="listQuery.offset" :limit.sync="listQuery.limit"/>
-      <div id="player"></div>
+        :page.sync="listQuery.offset"
+        :limit.sync="listQuery.limit"
+        @pagination="getArticleList"
+      />
     </div>
   </div>
 </template>
@@ -17,39 +18,37 @@
 import Article from '@/components/index/article.vue'
 import Pagination from '@/components/public/Pagination' // Secondary package based on el-pagination
 export default {
+  // scrollToTop: true,
   components: {
     Article,
     Pagination
   },
+  async asyncData({ app }) {
+  },
   data() {
     return {
+      total: 0,
+      articleList: [],
       listQuery: {
-        offset: this.$route.query.offset || 1,
-        limit: this.$route.query.limit || 10,
-      },
+        offset: 1,
+        limit: 10
+      }
     }
+  },
+  created() {
+    this.getArticleList()
   },
   methods: {
-    name() {
-      
-    }
-  },
-  watchQuery: ['listQuery.offset'],
-  async asyncData({app, query}) {
-    console.log(query)
-    const { data: {result, data: {count, rows}} } = await app.$axios.get('/article/list', {
-      offset: query.offset || 1,
-      limit: query.limit || 10,
-    })
-    if (result) {
-      return {
-        articleList: rows,
-        total: count
-      }
-    } else {
-      return {
-        articleList: [],
-        total: 0
+    async getArticleList() {
+      const { data: { result, data: { count, rows }}} = await this.$axios.get('blog/article/list', {
+        params: {
+          offset: this.listQuery.offset,
+          limit: this.listQuery.limit
+        }
+      })
+      if (result) {
+        this.articleList = rows
+        this.total = count
       }
     }
   }

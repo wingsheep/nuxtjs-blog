@@ -1,7 +1,8 @@
 <template>
   <el-row
     :gutter="0"
-    class="header">
+    class="header"
+  >
     <!-- <el-col :span="5">
       <geo/>
     </el-col>
@@ -19,7 +20,7 @@ import Geo from './geo.vue'
 import User from './user.vue'
 import Navbar from './nav.vue'
 export default {
-  components:{
+  components: {
     Geo,
     User,
     Navbar

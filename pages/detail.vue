@@ -4,12 +4,13 @@
       <el-col :span="24">
         <crumbs
           :keyword="keyword"
-          :type="type"/>
+          :type="type"
+        />
       </el-col>
     </el-row>
     <el-row>
       <el-col :span="24">
-        <summa :meta="product"/>
+        <summa :meta="product" />
       </el-col>
     </el-row>
     <el-row class="m-title">
@@ -21,17 +22,21 @@
       <el-col :span="24">
         <list
           v-if="login"
-          :list="list"/>
+          :list="list"
+        />
         <div
           v-else
-          class="deal-need-login">
+          class="deal-need-login"
+        >
           <img
             src="//p0.meituan.net/codeman/56a7d5abcb5ce3d90fc91195e5b5856911194.png"
-            alt="登录查看">
+            alt="登录查看"
+          >
           <span>请登录后查看详细团购优惠</span>
           <el-button
             type="primary"
-            round>
+            round
+          >
             <a href="/login">立即登录</a>
           </el-button>
         </div>
@@ -41,30 +46,25 @@
 </template>
 
 <script>
-import Crumbs from '@/components/detail/crumbs.vue';
+import Crumbs from '@/components/detail/crumbs.vue'
 import Summa from '@/components/detail/summary.vue'
 import List from '@/components/detail/list.vue'
 export default {
-  components:{
+  components: {
     Crumbs,
     Summa,
     List
   },
-  computed:{
-    canOrder:function(){
-      return this.list.filter(item=>item.photos.length).length
-    }
-  },
-  async asyncData(ctx){
-    let {keyword,type}=ctx.query;
-    let {status,data:{product,more:list,login}}=await ctx.$axios.get('/search/products',{
-      params:{
+  async asyncData(ctx) {
+    const { keyword, type } = ctx.query
+    const { status, data: { product, more: list, login }} = await ctx.$axios.get('/search/products', {
+      params: {
         keyword,
         type,
-        city:ctx.store.state.geo.position.city
+        city: ctx.store.state.geo.position.city
       }
     })
-    if(status===200){
+    if (status === 200) {
       return {
         keyword,
         product,
@@ -72,14 +72,19 @@ export default {
         list,
         login
       }
-    }else{
+    } else {
       return {
         keyword,
-        product:{},
+        product: {},
         type,
-        list:[],
-        login:false
+        list: [],
+        login: false
       }
+    }
+  },
+  computed: {
+    canOrder: function() {
+      return this.list.filter(item => item.photos.length).length
     }
   }
 }

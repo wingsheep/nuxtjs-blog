@@ -4,22 +4,23 @@
       <dt>热门城市：</dt>
       <dd
         v-for="item in list"
-        :key="item.id">{{ item.name==='市辖区'?item.province:item.name }}</dd>
+        :key="item.id"
+      >{{ item.name==='市辖区'?item.province:item.name }}</dd>
     </dl>
   </div>
 </template>
 
 <script>
 export default {
-  data(){
+  data() {
     return {
-      list:[]
+      list: []
     }
   },
-  async mounted(){
-    let {status,data:{hots}}=await this.$axios.get('/geo/hotCity')
-    if(status===200){
-      this.list=hots
+  async mounted() {
+    const { status, data: { hots }} = await this.$axios.get('/geo/hotCity')
+    if (status === 200) {
+      this.list = hots
     }
   }
 }

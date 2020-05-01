@@ -18,7 +18,7 @@ const app = new Koa()
 const config = require('../nuxt.config.js')
 config.dev = app.env !== 'production'
 
-async function start () {
+async function start() {
   // Instantiate nuxt.js
   const nuxt = new Nuxt(config)
 
@@ -29,7 +29,7 @@ async function start () {
 
   app.keys = ['mt', 'keykeys']
   app.proxy = true
-  app.use(session({key: 'mt', prefix: 'mt:uit', store: new Redis()}))
+  app.use(session({ key: 'mt', prefix: 'mt:uit', store: new Redis() }))
   app.use(bodyParser({
     extendTypes: ['json', 'form', 'text']
   }))

@@ -1,8 +1,8 @@
 {
-  "name": "luoxiaohei",
+  "name": "blog",
   "version": "1.0.0",
   "description": "My divine Nuxt.js project",
-  "author": "luoxiaohei",
+  "author": "taoxiang",
   "private": true,
   "scripts": {
     "dev": "nuxt dev",

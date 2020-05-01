@@ -5,7 +5,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: '罗小黑的个人网站',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -35,7 +35,7 @@ module.exports = {
   */
   plugins: [
     '@/plugins/element-ui',
-    '@/plugins/route'
+    // '@/plugins/route'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -49,9 +49,13 @@ module.exports = {
     '@nuxtjs/axios'
   ],
   router: {
-    // scrollBehavior(to, from, savedPosition) {
-    //   return { x: 0, y: 0 }
-    // }
+    mode: 'history',
+    scrollBehavior(to, from, savedPosition) {
+      if (savedPosition) {
+        return savedPosition;
+      }
+      return { x: 0, y: 0 };
+    }
   },
   axios: {
     proxy: true,

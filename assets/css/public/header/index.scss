@@ -12,6 +12,7 @@
     width: 100%;
     margin: 0 auto;
     background: rgba(40,42,44,.4);
+    backdrop-filter: blur(50px);
     color: #fff;
     position: fixed;
   }

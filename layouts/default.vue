@@ -1,5 +1,5 @@
 <template>
-  <el-container class="layout-default">
+  <el-container ref="layout" class="layout-default">
     <el-header height="280px">
       <my-header />
     </el-header>
@@ -33,6 +33,11 @@ export default {
     MyFooter,
     SideBar,
     SongPlayer
+  },
+  watch: {
+    '$route'(to,from){
+      document.querySelector('.layout-default').scrollTo(0, 0)
+    }
   }
 }
 </script>

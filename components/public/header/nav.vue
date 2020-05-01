@@ -27,11 +27,11 @@ export default {
           name: '首页',
           icon: 'el-icon-s-home'
         },
-        {
-          path: '/cloud',
-          name: '网盘',
-          icon: 'el-icon-cloudy'
-        },
+        // {
+        //   path: '/cloud',
+        //   name: '网盘',
+        //   icon: 'el-icon-cloudy'
+        // },
         {
           path: '/project',
           name: '项目',

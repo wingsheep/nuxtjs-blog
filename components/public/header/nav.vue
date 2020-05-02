@@ -58,6 +58,11 @@ export default {
           icon: 'el-icon-connection'
         },
         {
+          path: '/follow/1',
+          name: '我的番剧',
+          icon: 'el-icon-monitor'
+        },
+        {
           path: '/about',
           name: '关于',
           icon: 'el-icon-user'

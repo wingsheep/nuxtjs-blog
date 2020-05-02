@@ -22,7 +22,7 @@
       Tips
     </el-divider>
     <div class="apply-info">
-      <p style="margin-bottom: 10px">走过路过不要错过，大佬，可否互加友链，交个朋友！</p>
+      <p style="margin-bottom: 10px">走过路过不要错过，互加友链，交个朋友！</p>
       <p>链接名称：罗小黑</p>
       <p>链接地址：https://www.happyfly.top/</p>
       <p>链接图片：https://cdn.jsdelivr.net/gh/Thawsoar/FigureBed@master/img/avatar.jpg</p>
@@ -206,6 +206,15 @@
           margin-top: 4px;
         }
       }
+    }
+  }
+  .el-divider {
+    .el-divider__text {
+      background: #1BC3FB;
+      color: #fff;
+      font-size: 12px;
+      line-height: 16px;
+      border-radius: 2px;
     }
   }
   .apply-info {

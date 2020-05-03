@@ -59,7 +59,7 @@ export default {
         },
         {
           path: '/follow/1',
-          name: '我的番剧',
+          name: '番剧リスト',
           icon: 'el-icon-monitor'
         },
         {

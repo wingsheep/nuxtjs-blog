@@ -56,8 +56,7 @@
         this.timer = setTimeout(() => {
           const scrollTop2 = dom.scrollTop || document.body.scrollTop
           if(scrollTop2 == scrollTop1){
-            console.log(scrollTop2)
-            this.scrollTop = scrollTop2 <= 0 ? 150 : scrollTop2 - 150
+            this.scrollTop = scrollTop2 <= 300 ? 150 : scrollTop2 - 150
           }
         }, 300);
         const scrollTop1 = dom.scrollTop || document.body.scrollTop
@@ -142,7 +141,7 @@
     dd {
       color: #222;
       background: #ffffff80;
-      border: 1px solid white;
+      border: 1px solid #fff;
       border-right: none;
       border-radius: 4px;
       border-top-right-radius: 0;
@@ -150,14 +149,16 @@
       margin-bottom: 10px;
       letter-spacing: 3px;
       display: block;
-      padding: 20px 10px;
       writing-mode: vertical-lr;
       backdrop-filter: blur(10px);
       a {
         color: #222;
+        padding: 20px 10px;
+        display: block;
       }
       &.active {
         background: #1BC3FB60;
+        border: 1px solid #1BC3FB;
         border-left: 2px solid #1BC3FB;
         box-shadow: 0 0 10px #fff;
         a {

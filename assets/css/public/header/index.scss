@@ -11,7 +11,7 @@
     z-index: 9;
     width: 100%;
     margin: 0 auto;
-    background: rgba(40,42,44,.4);
+    background: rgba(40, 42, 44, .2);
     backdrop-filter: blur(50px);
     color: #fff;
     position: fixed;
@@ -27,7 +27,7 @@
       padding: 0;
       & > li {
         float: left;
-        padding: 0 10px;
+        padding: 0 15px;
         box-sizing: border-box;
         text-align: center;
         cursor: pointer;
@@ -46,7 +46,9 @@
         }
         &.right {
           float: right;
-          width: 60px;
+        }
+        &:nth-last-child(2) {
+          margin-right: 30px;
         }
       }
     }

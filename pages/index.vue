@@ -17,6 +17,7 @@
 <script>
 import Article from '@/components/index/article.vue'
 import Pagination from '@/components/public/Pagination' // Secondary package based on el-pagination
+
 export default {
   scrollToTop: true,
   components: {

@@ -4,7 +4,7 @@
       <el-col>
         <top-bar />
       </el-col>
-      <el-col>
+      <el-col v-if="!$store.state.hideSideBar">
         <motto />
       </el-col>
     </el-row>

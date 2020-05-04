@@ -70,7 +70,15 @@ export default {
 
       ]
     }
-  }
+  },
+  mounted () {
+    console.log(2323423)
+  },
+  methods: {
+    name() {
+      
+    }
+  },
 }
 </script>
 

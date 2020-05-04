@@ -1,10 +1,11 @@
 <template>
   <div class="sidebar">
-    <userInfo />
-    <archive />
+    <userInfo v-if="!$store.state.hideSideBar"/>
+    <archive  v-if="!$store.state.hideSideBar" />
     <articleTabs />
-    <tags />
-    <comment />
+    <tags v-if="!$store.state.hideSideBar" />
+    <comment v-if="false" />
+    <toc v-if="$store.state.hideSideBar && $store.state.tocList.length" />
   </div>
 </template>
 
@@ -14,13 +15,15 @@ import archive from './archive'
 import articleTabs from './articleTabs'
 import tags from './tags'
 import comment from './comment'
+import toc from './toc'
 export default {
   components: {
     userInfo,
     archive,
     articleTabs,
     tags,
-    comment
+    comment,
+    toc
   }
 }
 </script>

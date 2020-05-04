@@ -1,10 +1,10 @@
 <template>
   <el-container ref="layout" class="layout-default">
-    <el-header height="280px">
+    <el-header :height="!$store.state.hideSideBar ? '300px' : '60px'">
       <my-header />
     </el-header>
     <el-main>
-      <el-row class="main-content">
+      <el-row class="main-content" :gutter="15">
         <el-col :span="16">
           <nuxt />
         </el-col>
@@ -34,10 +34,27 @@ export default {
     SideBar,
     SongPlayer
   },
-  watch: {
-    '$route'(to,from){
-      document.querySelector('.layout-default').scrollTo(0, 0)
+  data() {
+    return {
     }
+  },
+  watch: {
+    '$route': {
+       handler(val) {
+        if (process.client) {
+          this.$store.commit('setHideSideBar', false)
+          if (val.name === 'detailed-id') {
+            this.$store.commit('setHideSideBar', true)
+          } else {
+            if (document.querySelector('.layout-default')) {
+              document.querySelector('.layout-default').scrollTo(0, 0)
+            }
+          }
+        }
+       },
+       deep: true,
+       immediate: true
+     }
   }
 }
 </script>

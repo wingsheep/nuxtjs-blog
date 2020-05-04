@@ -35,6 +35,8 @@ module.exports = {
   */
   plugins: [
     '@/plugins/element-ui',
+    '@/plugins/filter',
+    // '@/plugins/axios',
     // '@/plugins/route'
   ],
   /*
@@ -56,6 +58,9 @@ module.exports = {
       }
       return { x: 0, y: 0 };
     }
+  },
+  server: {
+    port: 3000, // default: 5000
   },
   axios: {
     proxy: true,

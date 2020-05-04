@@ -5,7 +5,9 @@
         <span>标签聚合</span>
       </div>
     </template>
-    <el-tag v-for="(item, index) in tagsList" :key="index" :type="types[index % 5]" style="margin: 5px">{{ item.name }}</el-tag>
+    <nuxt-link v-for="(item, index) in tagsList" :key="index" :to="{path: `/category/${item.name}/${item.id}`}">
+      <el-tag :type="types[index % 5]" style="margin: 5px">{{ item.name }} ({{ item.count }})</el-tag>
+    </nuxt-link>
   </el-card>
 </template>
 

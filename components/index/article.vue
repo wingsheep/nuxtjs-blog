@@ -4,8 +4,8 @@
       <img :src="articleData.img_url" alt="">
       <div class="info">
         <div class="header">
-          <nuxt-link to="/detailed" class="label">{{articleData.labels[0].name || 'BLOG'}}</nuxt-link>
-          <h2><nuxt-link :to="`detailed/${articleData.id}`">{{ articleData.title }}</nuxt-link></h2>
+          <nuxt-link :to="`/detailed/${articleData.id}`" class="label">{{articleData.labels[0].name || 'BLOG'}}</nuxt-link>
+          <h2><nuxt-link :to="`/detailed/${articleData.id}`">{{ articleData.title }}</nuxt-link></h2>
         </div>
         <p>{{ articleData.description }}</p>
       </div>
@@ -14,19 +14,19 @@
           <dl>
             <dd :span="5">
               <i class="el-icon-date" />
-              <a>{{ articleData.date }}</a>
+              <a>{{ articleData.date | filterDate }}</a>
             </dd>
             <dd :span="3">
               <i class="el-icon-s-comment" />
-              <a>15条评论</a>
+              <a>{{articleData.comment}}条评论</a>
             </dd>
             <dd :span="3">
               <i class="el-icon-reading" />
-              <a>1.14k阅读</a>
+              <a>{{ articleData.views || 0}}阅读</a>
             </dd>
             <dd :span="3">
               <i class="el-icon-thumb" />
-              <a>3人点赞</a>
+              <a>{{ articleData.like_count }}人点赞</a>
             </dd>
             <dd :span="3">
               <i class="el-icon-user-solid" />
@@ -35,7 +35,7 @@
           </dl>
         </el-col>
         <el-col :span="3" :push="1">
-          <a>阅读全文</a>
+          <nuxt-link :to="`/detailed/${articleData.id}`">阅读全文</nuxt-link>
           <i class="el-icon-right" />
         </el-col>
       </el-row>
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import dayjs from 'dayjs'
 export default {
   props: {
     articleData: {
@@ -53,7 +54,6 @@ export default {
   },
   data() {
     return {
-      key: ''
     }
   }
 }

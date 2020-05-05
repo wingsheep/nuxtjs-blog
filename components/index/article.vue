@@ -4,7 +4,7 @@
       <img :src="articleData.img_url" alt="">
       <div class="info">
         <div class="header">
-          <nuxt-link :to="`/detailed/${articleData.id}`" class="label">{{articleData.labels[0].name || 'BLOG'}}</nuxt-link>
+          <nuxt-link :to="`/detailed/${articleData.id}`" class="label">{{articleData.labels.length && articleData.labels[0].name || 'BLOG'}}</nuxt-link>
           <h2><nuxt-link :to="`/detailed/${articleData.id}`">{{ articleData.title }}</nuxt-link></h2>
         </div>
         <p>{{ articleData.description }}</p>

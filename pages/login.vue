@@ -21,7 +21,7 @@
         </div>
         <el-button
           class="btn-login"
-          type="success"
+          type="primary"
           size="mini"
           @click="login"
         >登录</el-button>

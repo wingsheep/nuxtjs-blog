@@ -3,6 +3,8 @@ const state = () => ({
   menusList: [],
   tocList: [],
   tocState: '',
+  archiveListByMonth: [],
+  articleTabs: [],
   hideSideBar: false
 })
 
@@ -21,6 +23,12 @@ const mutations = {
   },
   setTocList(state, val) {
     state.tocList = val
+  },
+  setArchiveListByMonth(state, val) {
+    state.archiveListByMonth = val
+  },
+  setArticleTabs(state, val) {
+    state.articleTabs = val
   }
 }
 
@@ -30,8 +38,15 @@ const actions = {
   }, { app }) {
     const {data: {result, data}} = await app.$axios.get('/blog/getTagsList')
     commit('setTagsList', result ? data : [])
+
     const {data:{result: result1, data: data1}} = await app.$axios.get('/blog/getMenusList')
-    commit('setMenusList',  result1 ? data1 : [])
+    commit('setMenusList', result1 ? data1 : [])
+
+    const {data:{result: result2, data: data2}} = await app.$axios.get('/blog/getArchiveListByMonth')
+    commit('setArchiveListByMonth', result2 ? data2 : [])
+
+    const {data:{result: result3, data: data3}} = await app.$axios.get('/blog/getArticleTabs')
+    commit('setArticleTabs', result3 ? data3 : [])
   }
 }
 

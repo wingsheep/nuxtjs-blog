@@ -6,14 +6,15 @@
       </div>
     </template>
     <el-tabs v-model="activeName" @tab-click="handleClick">
-      <el-tab-pane v-for="item in tabList" :key="item.CODE" :label="item.NAME" :name="item.CODE" />
+      <el-tab-pane v-for="item in tabList" :key="item.CODE" :label="item.NAME" :name="item.CODE">
+        <ul>
+          <li v-for="(tabItem, index) in $store.state.articleTabs[item.CODE]" :key="index">
+            <i class="el-icon-edit-outline" />
+            <span><nuxt-link :to="`/detailed/${tabItem.id}`">{{ tabItem.title }}</nuxt-link></span>
+          </li>
+        </ul>
+      </el-tab-pane>
     </el-tabs>
-    <ul>
-      <li v-for="(item, index) in articleList" :key="index">
-        <i class="el-icon-edit-outline" />
-        <span><nuxt-link to="">{{ item.name }}</nuxt-link></span>
-      </li>
-    </ul>
   </el-card>
 </template>
 

@@ -11,8 +11,7 @@
           v-for="(item, index) in $store.state.tocList"
           :class="`${item.type}type`"
           :key="index"
-          @click="scrollPage(item)"
-        >
+          @click="scrollPage(item)">
           <a :class="$store.state.tocState === item.txt ? 'on' : ''" >{{item.txt}}</a>
         </li>
       </ol>

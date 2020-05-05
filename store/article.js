@@ -167,7 +167,6 @@ export const actions = {
   async getArticleDetail({ commit }, params) {
     try {
       const {data:{result, data}} = await this.$axios.get(`blog/article/detail/${params.id}`, params)
-      console.log(result)
       commit('setArticleDetail', result ? data : {})
     } catch (e) {
       // eslint-disable-next-line no-console

@@ -35,8 +35,8 @@
       </div>
       <article v-show="markedContent" ref="markdown" class="markdown" v-html="markedContent" />
     </el-card>
-    <el-card>
-      123
+    <el-card style="margin-top: 15px; text-align: center">
+      评论功能暂未开放
     </el-card>
   </div>
 </template>

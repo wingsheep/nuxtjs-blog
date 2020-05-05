@@ -8,8 +8,10 @@
     <ul>
       <li v-for="(item, index) in $store.state.archiveListByMonth" :key="index">
         <i class="el-icon-date" />
-        <span><nuxt-link to="">{{ item.month }}</nuxt-link></span>
-        <span>({{ item.sum }})</span>
+        <nuxt-link :to="`/archive#${item.date}`">
+          <span>{{ item.month }}</span>
+          <span>({{ item.sum }}篇)</span>
+        </nuxt-link>
       </li>
     </ul>
   </el-card>

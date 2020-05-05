@@ -22,15 +22,18 @@
         <el-timeline-item
           v-for="item in archiveList"
           :key="item.year"
-         :hide-timestamp="true"
-         placement="top">
+          :hide-timestamp="true"
+          placement="top">
            <h1 style="padding-bottom: 10px">{{item.year}}年</h1>
            <el-timeline>
             <el-timeline-item
               class="item-month"
               v-for="monthItem in item.monthList"
               :key="monthItem.month"
-              :timestamp="`${monthItem.month}月（${monthItem.articles.length}篇）`" placement="top">
+              :hide-timestamp="true" placement="top">
+              <h5 style="padding-bottom: 10px">
+                <span :id="monthItem.hash" class="heading">{{`${monthItem.month}月 (${monthItem.articles.length}篇)`}}</span>
+              </h5>
               <el-card v-for="dayItem in monthItem.articles" :key="dayItem.id" shadow="hover">
                 <nuxt-link :to="`/detailed/${dayItem.id}`"><h3>{{dayItem.title}}</h3></nuxt-link>
                 <h4>发布于{{dayItem.created_at}}, 共编辑了{{dayItem.version + 1}}次</h4>
@@ -64,6 +67,11 @@
     },
     async fetch({ store, params }) {
       await store.dispatch('archive/getArchive')
+    },
+    mounted () {
+      if (this.$route.hash) {
+        window.location.href = this.$route.hash
+      }
     },
   }
 </script>
@@ -102,6 +110,12 @@
       
       &:hover {
         border-left: 4px solid #1BC3FB;
+      }
+    }
+    .heading {
+      &:target {
+        padding-top: 60px;
+        margin-top: -60px;
       }
     }
     .el-timeline-item {

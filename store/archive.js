@@ -39,6 +39,7 @@ export const actions = {
       let yearIndex = -1
       let monthIndex = 0
       data.forEach(v => {
+        const hash = Utils.timestampToTime(v.created_at, 'Y-m')
         let dateArr = v.created_at.split('-')
         let year = dateArr[0]
         let month = parseInt(dateArr[1])
@@ -51,6 +52,7 @@ export const actions = {
             v.created_at = format(month, time)
             archive[yearIndex].monthList.push({
               month,
+              hash,
               articles: [v]
             })
             monthIndex++
@@ -62,6 +64,7 @@ export const actions = {
             year,
             monthList: [{
               month,
+              hash,
               articles: [v]
             }]
           })
@@ -71,8 +74,6 @@ export const actions = {
           curYear = year
         }
       })
-      console.log(archive, total)
-
       commit('setArchive', { archive, total })
     } catch (e) {
       // eslint-disable-next-line no-console

@@ -8,10 +8,10 @@
     </div>
     <div class="friend">
       <ul>
-        <li v-for="(item, index) in friendList" :key="index" :style="{background: randomRgbColor()}">
+        <li v-for="(item, index) in friendlinkList" :key="index" :style="{background: randomRgbColor()}">
           <a :href="item.url" target="_blank">
-            <img v-show="item.avatar" :src="item.avatar" @error="item.avatar = ''" />
-            <span v-show="!item.avatar">{{item.name.slice(0, 1)}}</span>
+            <img v-show="item.img_url" :src="item.img_url" @error="item.img_url = ''" />
+            <span v-show="!item.img_url">{{item.name.slice(0, 1)}}</span>
             <h4>{{item.name}}</h4>
             <p>{{item.desc}}</p>
           </a>
@@ -27,7 +27,7 @@
       <p>链接地址：https://www.happyfly.top/</p>
       <p>链接图片：https://cdn.jsdelivr.net/gh/Thawsoar/FigureBed@master/img/avatar.jpg</p>
       <p>链接描述：记录生活~</p>
-      <p style="text-align:center;margin-top: 10px"><el-button type="primary" size="medium">点我加友链！</el-button></p>
+      <p style="text-align:center;margin-top: 10px"><el-button type="primary" size="medium" @click="addFriendlink">点我加友链！</el-button></p>
     </div>
   </el-card>
 </template>
@@ -37,82 +37,15 @@
     scrollToTop: true,
     data() {
       return {
-        friendList: [
-          {
-            name: '洛尘曦',
-            avatar: 'https://cdn.jsdelivr.net/gh/SGYZ0910/CDN@1.1.7/images/lcx.jpg',
-            url: 'https://www.sgyzyun.club/frendlinks/',
-            desc: '前端开发前端开发前端开发前端开发前端开发前端开发前端开发'
-          },
-          {
-            name: '尤小右',
-            avatar: 'https://cdn.jsdelivr.net/gh/Thawsoar/FigureBed@master/img/avatar.jpg',
-            url: '',
-            desc: '前端开发前端开发前端开发前端开发前端开发前端开发前端开发'
-          },
-          {
-            name: '尤小右',
-            avatar: '12',
-            url: '',
-            desc: '前端开发前端开发前端开发前端开发前端开发前端开发前端开发'
-          },
-          {
-            name: '尤小右',
-            avatar: 'https://cdn.jsdelivr.net/gh/Thawsoar/FigureBed@master/img/avatar.jpg',
-            url: '',
-            desc: '前端开发前端开发前端开发前端开发前端开发前端开发前端开发'
-          },
-          {
-            name: '尤小右',
-            avatar: 'https://cdn.jsdelivr.net/gh/Thawsoar/FigureBed@master/img/avatar.jpg',
-            url: '',
-            desc: '前端开发前端开发前端开发前端开发前端开发前端开发前端开发'
-          },
-          {
-            name: '尤小右',
-            avatar: '',
-            url: '',
-            desc: '前端开发前端开发前端开发前端开发前端开发前端开发前端开发'
-          },
-          {
-            name: '尤小右',
-            avatar: 'https://cdn.jsdelivr.net/gh/Thawsoar/FigureBed@master/img/avatar.jpg',
-            url: '',
-            desc: '前端开发前端开发前端开发前端开发前端开发前端开发前端开发'
-          },
-          {
-            name: '尤小右',
-            avatar: 'https://cdn.jsdelivr.net/gh/Thawsoar/FigureBed@master/img/avatar.jpg',
-            url: '',
-            desc: '前端开发前端开发前端开发前端开发前端开发前端开发前端开发'
-          },
-          {
-            name: '尤小右',
-            avatar: '',
-            url: '',
-            desc: '前端开发前端开发前端开发前端开发前端开发前端开发前端开发'
-          },
-          {
-            name: '尤小右',
-            avatar: 'https://cdn.jsdelivr.net/gh/Thawsoar/FigureBed@master/img/avatar.jpg',
-            url: '',
-            desc: '前端开发前端开发前端开发前端开发前端开发前端开发前端开发'
-          },
-          {
-            name: '尤小右',
-            avatar: 'https://cdn.jsdelivr.net/gh/Thawsoar/FigureBed@master/img/avatar.jpg',
-            url: '',
-            desc: '前端开发前端开发前端开发前端开发前端开发前端开发前端开发'
-          },
-          {
-            name: '尤小右',
-            avatar: '',
-            url: '',
-            desc: '前端开发前端开发前端开发前端开发前端开发前端开发前端开发'
-          },
-          
-        ]
       }
+    },
+    computed: {
+      friendlinkList () {
+        return this.$store.state.friendlink.friendlink
+      }
+    },
+    async fetch({ store, params }) {
+      await store.dispatch('friendlink/getFriendLinks')
     },
     methods: {
       //随机生成RGB颜色
@@ -121,6 +54,9 @@
         const g = Math.floor(Math.random() * 256) //随机生成256以内g值
         const b = Math.floor(Math.random() * 256) //随机生成256以内b值
         return `rgb(${r},${g},${b})` //返回rgb(r,g,b)格式颜色
+      },
+      addFriendlink() {
+        this.$message.warning('友链功能暂未开放')
       }
     },
   }

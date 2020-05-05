@@ -71,7 +71,16 @@
         document.querySelector('.layout-default').addEventListener('scroll', this.handleScroll);
       })
     },
+    computed: {
+      // followList1 () {
+      //   return this.$store.state.follow.followList
+      // }
+    },
+    async fetch({ store, params }) {
+      await store.dispatch('follow/getFollowList', params.id)
+    },
     async asyncData({app, params}) {
+      
       const result = await app.$axios.get('/blog/getFollowList', {
         params: {
           vmid: 126384053,

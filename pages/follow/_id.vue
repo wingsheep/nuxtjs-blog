@@ -45,7 +45,6 @@
     data() {
       return {
         scrollTop: 150,
-        followList: [],
         timer: null
       }
     },
@@ -72,21 +71,14 @@
       })
     },
     computed: {
-      // followList1 () {
-      //   return this.$store.state.follow.followList
-      // }
+      followList () {
+        return this.$store.state.follow.followList.list || []
+      }
     },
     async fetch({ store, params }) {
       await store.dispatch('follow/getFollowList', params.id)
     },
     async asyncData({app, params}) {
-      
-      const result = await app.$axios.get('/blog/getFollowList', {
-        params: {
-          vmid: 126384053,
-          type: params.id
-        }
-      })
       const tabsList = [
         {
           CODE: '1',
@@ -106,7 +98,6 @@
         }
       })
       return {
-        followList: result.data.data.list,
         tabsList
       }
     }

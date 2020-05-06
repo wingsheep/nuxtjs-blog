@@ -34,7 +34,27 @@
         <p>{{ article.description }}</p>
       </div>
       <article v-show="markedContent" ref="markdown" class="markdown" v-html="markedContent" />
+      <footer class="post-footer">
+        <div class="footer-tags">
+          <i>图标</i>
+          <span v-for="item in article.labels" :key="item.id">{{item.name}}</span>
+        </div>
+        <div class="footer-like">
+          <span>
+            <i class="el-icon-thumb" />
+            <a>3人点赞</a>
+          </span>
+        </div>
+      </footer>
     </el-card>
+    <section class="post-btns">
+      <nuxt-link v-if="article.last_id" class="last-post" :to="`/detailed/${article.last_id}`">
+        <el-button>上一篇</el-button>
+      </nuxt-link>
+      <nuxt-link v-if="article.next_id" class="next-post" :to="`/detailed/${article.next_id}`">
+        <el-button>下一篇</el-button>
+      </nuxt-link>
+    </section>
     <el-card style="margin-top: 15px; text-align: center">
       评论功能暂未开放
     </el-card>
@@ -262,6 +282,22 @@ export default {
           }
         }
       }
+    }
+  }
+  .post-footer {
+    margin-top: 30px;
+    padding: 15px 0;
+    border-top: 1px dashed #ddd;
+    border-bottom: 1px dashed #ddd;
+  }
+  section.post-btns {
+    margin-top: 15px;
+    overflow: hidden;
+    .last-post {
+      float: left;
+    }
+    .next-post {
+      float: right;
     }
   }
 }

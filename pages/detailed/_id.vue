@@ -36,13 +36,12 @@
       <article v-show="markedContent" ref="markdown" class="markdown" v-html="markedContent" />
       <footer class="post-footer">
         <div class="footer-tags">
-          <i>图标</i>
-          <span v-for="item in article.labels" :key="item.id">{{item.name}}</span>
+          <span v-for="item in article.labels" :key="item.id"># {{item.name}}</span>
         </div>
         <div class="footer-like">
           <span>
             <i class="el-icon-thumb" />
-            <a>3人点赞</a>
+            <a>3</a>
           </span>
         </div>
       </footer>
@@ -289,6 +288,32 @@ export default {
     padding: 15px 0;
     border-top: 1px dashed #ddd;
     border-bottom: 1px dashed #ddd;
+    overflow: hidden;
+    .footer-tags {
+      float: right;
+      span {
+        font-size: 12px;
+        line-height: 17px;
+        letter-spacing: .05em;
+        color: #655e5e;
+        padding: 5px 10px;
+        background: #f5f5f5
+      }
+    }
+    .footer-like {
+      float: left;
+      border-radius: 42px;
+      text-align: center;
+      background: #f4f4f4;
+      transition: background .5s;
+      cursor: pointer;
+      margin-right: 30p
+      span {
+        font-size: 14px;
+        line-height: 20px;
+        color: #8e8787;
+      }
+    }
   }
   section.post-btns {
     margin-top: 15px;

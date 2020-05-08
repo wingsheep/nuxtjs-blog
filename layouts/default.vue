@@ -41,7 +41,6 @@ export default {
   watch: {
     '$route': {
        handler(val) {
-         console.log(val)
         if (process.client) {
           this.$store.commit('setHideSideBar', false)
           if (val.name === 'detailed-id') {

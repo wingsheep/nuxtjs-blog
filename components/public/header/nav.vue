@@ -32,21 +32,21 @@ export default {
         //   name: '网盘',
         //   icon: 'el-icon-cloudy'
         // },
-        {
-          path: '/project',
-          name: '项目',
-          icon: 'el-icon-document-copy'
-        },
-        {
-          path: '/note',
-          name: '笔记',
-          icon: 'el-icon-edit-outline'
-        },
-        {
-          path: '/life',
-          name: '生活',
-          icon: 'el-icon-camera'
-        },
+        // {
+        //   path: '/project',
+        //   name: '项目',
+        //   icon: 'el-icon-document-copy'
+        // },
+        // {
+        //   path: '/note',
+        //   name: '笔记',
+        //   icon: 'el-icon-edit-outline'
+        // },
+        // {
+        //   path: '/life',
+        //   name: '生活',
+        //   icon: 'el-icon-camera'
+        // },
         {
           path: '/archive',
           name: '归档',
@@ -72,7 +72,6 @@ export default {
     }
   },
   mounted () {
-    console.log(2323423)
   },
   methods: {
     name() {

@@ -13,7 +13,11 @@ module.exports = {
       { name: 'referrer', content: 'no-referrer' } // 解决 网络图片 img 403问题
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://at.alicdn.com/t/font_1809440_4mc0zovpw9.css'}
+    ],
+    script: [
+      // { src: 'https://at.alicdn.com/t/font_1809440_7f90q2uaj1m.js', async: true, defer: true }
     ]
   },
   /*
@@ -36,8 +40,7 @@ module.exports = {
   plugins: [
     '@/plugins/element-ui',
     '@/plugins/filter',
-    // '@/plugins/axios',
-    // '@/plugins/route'
+    '@/plugins/gravatar',
   ],
   /*
   ** Nuxt.js dev-modules

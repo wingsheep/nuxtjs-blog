@@ -6,7 +6,9 @@
     <el-main>
       <el-row class="main-content" :gutter="15">
         <el-col :span="16">
-          <nuxt />
+           <transition name="fade-transform" mode="out-in">
+             <nuxt />
+           </transition>
         </el-col>
         <el-col class="sidebar-box" :span="8">
           <SideBar />
@@ -60,4 +62,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/css/animation.scss";
+
 </style>

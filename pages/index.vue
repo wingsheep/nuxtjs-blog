@@ -1,10 +1,10 @@
 <template>
   <div class="page-index">
     <div class="article-list">
-      <Article v-for="(item, index) in articleList" :key="index" :article-data="item" />
+      <Article v-for="(item, index) in $store.state.article.articles" :key="index" :article-data="item" />
       <pagination
-        v-show="total>0"
-        :total="total"
+        v-show="$store.state.article.total > 0"
+        :total="$store.state.article.total"
         layout="prev, pager, next"
         :page.sync="listQuery.offset"
         :limit.sync="listQuery.limit"
@@ -24,8 +24,6 @@ export default {
     Article,
     Pagination
   },
-  async asyncData({ app }) {
-  },
   data() {
     return {
       total: 0,
@@ -39,18 +37,16 @@ export default {
   created() {
     this.getArticleList()
   },
+  watchQuery: ['offset'],
+  async fetch({ store, query }) {
+    await store.dispatch('article/getArticles', query)
+  },
   methods: {
     async getArticleList() {
-      const { data: { result, data: { count, rows }}} = await this.$axios.get('blog/article/list', {
-        params: {
-          offset: this.listQuery.offset,
-          limit: this.listQuery.limit
-        }
+      this.$router.push({
+        path: '/',
+        query: this.listQuery
       })
-      if (result) {
-        this.articleList = rows
-        this.total = count
-      }
     }
   }
 }

@@ -110,8 +110,11 @@
           a {
             line-height: 36px;
             color: #222;
+            vertical-align: middle;
           }
-          
+          i {
+            vertical-align: middle;
+          }
         }
       }
     }
@@ -120,8 +123,11 @@
       a {
         line-height: 36px;
         color: #222;
+        vertical-align: middle;
       }
-      
+      i {
+        vertical-align: middle;
+      }
     }
   }
 }

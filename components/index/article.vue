@@ -13,30 +13,30 @@
         <el-col :span="20">
           <dl>
             <dd :span="5">
-              <i class="el-icon-date" />
+              <i class="iconfont icon-calendar" />
               <a>{{ articleData.date | filterDate }}</a>
             </dd>
             <dd :span="3">
-              <i class="el-icon-s-comment" />
+              <i class="iconfont icon-comments" />
               <a>{{articleData.comment}}条评论</a>
             </dd>
             <dd :span="3">
-              <i class="el-icon-reading" />
+              <i class="iconfont icon-read" />
               <a>{{ articleData.views || 0}}阅读</a>
             </dd>
             <dd :span="3">
-              <i class="el-icon-thumb" />
+              <i class="iconfont icon-good" />
               <a>{{ articleData.like_count }}人点赞</a>
             </dd>
             <dd :span="3">
-              <i class="el-icon-user-solid" />
+              <i class="iconfont icon-bussiness-man" />
               <a>罗小黑</a>
             </dd>
           </dl>
         </el-col>
         <el-col :span="3" :push="1">
           <nuxt-link :to="`/detailed/${articleData.id}`">阅读全文</nuxt-link>
-          <i class="el-icon-right" />
+          <i class="iconfont icon-arrow-right" />
         </el-col>
       </el-row>
     </el-row>

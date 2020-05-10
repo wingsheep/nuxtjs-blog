@@ -7,28 +7,16 @@ export const state = () => ({
   // 文章列表
   articles: [],
   total: 0,
-
-  // 归档
-  starArticles: [],
-  archive: [],
-  archiveTotal: 0,
-
   loading: false,
-
   // 详情
   article: null,
   comments: []
 })
 
 export const mutations = {
-  setHomeArticles(state, { articles, total, starArticles }) {
-    state.articles = articles
-    state.total = total
-    state.starArticles = starArticles
-  },
-
-  setMoreArticles(state, { articles }) {
-    state.articles = state.articles.concat(articles)
+  setArticles(state, { rows, count }) {
+    state.articles = rows
+    state.total = count
   },
 
   setLoading(state, loading = false) {
@@ -71,95 +59,24 @@ export const mutations = {
 }
 
 export const actions = {
-  // 获取首页文章列表
-  async getHomeArticles({ commit }, params) {
+  // 获取文章列表
+  async getArticles({ commit }, params) {
     try {
-      const { articles, total } = await article.getArticles(params)
-      const starArticles = await article.getStarArticles()
-      commit('setHomeArticles', { articles, total, starArticles })
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.log(e)
-    }
-  },
-
-  async getMoreArticles({ commit }, params) {
-    try {
-      commit('setLoading', true)
-      const { articles, total } = await article.getArticles(params)
-      commit('setMoreArticles', { articles, total })
-      commit('setLoading', false)
-    } catch (e) {
-      commit('setLoading', false)
-      // eslint-disable-next-line no-console
-      console.log(e)
-    }
-  },
-
-  async getArchive({ commit }) {
-    try {
-      let res = await article.getArchive()
-      res.forEach(v => {
-        v.created_date = Utils.timestampToTime(v.created_date)
+      const { data: { result, data}} = await this.$axios.get('blog/article/list', {
+        params: params
       })
-
-      function format(month, day) {
-        return month.toString().padStart(2, '0') + '.' + day.padStart(2, '0')
-      }
-
-      const total = res.length
-      let archive = []
-      // 按年份月份重新组合
-      let curYear = ''
-      let curMonth = 0
-      let yearIndex = -1
-      let monthIndex = 0
-      res.forEach(v => {
-        let dateArr = v.created_date.split('-')
-        let year = dateArr[0]
-        let month = parseInt(dateArr[1])
-        let time = dateArr[2].split(' ')[0]
-        if (year === curYear) {
-          if (month === curMonth) {
-            v.created_date = format(month, time)
-            archive[yearIndex].monthList[monthIndex].articles.push(v)
-          } else {
-            v.created_date = format(month, time)
-            archive[yearIndex].monthList.push({
-              month,
-              articles: [v]
-            })
-            monthIndex++
-            curMonth = month
-          }
-        } else {
-          v.created_date = format(month, time)
-          archive.push({
-            year,
-            monthList: [{
-              month,
-              articles: [v]
-            }]
-          })
-          yearIndex++
-          monthIndex = 0
-          curMonth = month
-          curYear = year
-        }
-      })
-      commit('setArchive', { archive, total })
+      commit('setArticles', result ? data : {})
     } catch (e) {
-      // eslint-disable-next-line no-console
       console.log(e)
     }
   },
+
 
   async getComments({ commit }, params) {
     try {
       const comments = await comment.getComments(params)
       commit('setComments', comments)
     } catch (e) {
-      // eslint-disable-next-line no-console
       console.log(e)
     }
   },
@@ -169,13 +86,12 @@ export const actions = {
       const {data:{result, data}} = await this.$axios.get(`blog/article/detail/${params.id}`, params)
       commit('setArticleDetail', result ? data : {})
     } catch (e) {
-      // eslint-disable-next-line no-console
       console.log(e)
     }
   },
 
   async likeArticle(_, id) {
-    return await article.likeArticle(id)
+    return await await this.$axios.post(`blog/article/like/${id}`)
   },
 
   async likeComment({ commit}, id) {

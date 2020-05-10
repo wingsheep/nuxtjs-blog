@@ -1,9 +1,9 @@
 <template>
   <div class="sidebar">
     <userInfo v-if="!$store.state.hideSideBar"/>
-    <archive v-if="!$store.state.hideSideBar && $route.name !== 'archive'" />
     <articleTabs />
     <tags v-if="!$store.state.hideSideBar && $route.name !== 'archive'" />
+    <archive v-if="!$store.state.hideSideBar && $route.name !== 'archive'" />
     <comment v-if="false" />
     <toc v-if="$store.state.hideSideBar && $store.state.tocList.length" />
   </div>

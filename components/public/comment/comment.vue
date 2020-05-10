@@ -66,6 +66,14 @@ export default {
     },
 
     async onSend(data) {
+      const params = {
+        article_id: this.articleId,
+        content: data.content,
+        user_email: data.email,
+        user_nickname: data.nickname,
+        user_url: "https://www.happyfly.top",
+        parent_id: data.parentId
+      }
       if (!this.articleId) {
         return
       }
@@ -75,28 +83,23 @@ export default {
           return
         }
         try {
-          data.articleId = this.articleId
-          data.parentId = this.parentId
-          const res = await this.$store.dispatch('article/replyComment', data)
-          if (res.errorCode === 0) {
+          const res = await this.$store.dispatch('article/replyComment', params)
+          if (res.data.result) {
             this.closeReply()
             this.$emit('createCommentSuccess')
           }
         } catch (e) {
-          // eslint-disable-next-line no-console
           console.log(e)
         }
       } else {
         // 创建评论
         try {
-          data.articleId = this.articleId
-          const res = await this.$store.dispatch('article/createComment', data)
-          if (res.errorCode === 0) {
+          const res = await this.$store.dispatch('article/createComment', params)
+          if (res.data.result) {
             this.$refs.editor.resetField()
             this.$emit('createCommentSuccess')
           }
         } catch (e) {
-          // eslint-disable-next-line no-console
           console.log(e)
         }
       }

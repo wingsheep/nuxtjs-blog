@@ -20,7 +20,7 @@
               </dd>
               <dd :span="3">
                 <i class="iconfont icon-good" />
-                <a>3人点赞</a>
+                <a>{{articleLike}}人点赞</a>
               </dd>
               <dd :span="3">
                 <i class="iconfont icon-bussiness-man" />
@@ -64,7 +64,6 @@
        <!-- 评论区域 -->
       <div ref="commentArea" class="article-container comment-container">
         <div class="content">
-          <split-line class="split-line" :icon="'message'" :desc="'评论'"></split-line>
           <div class="comment-wrapper">
             <comment :comments="comments" @createCommentSuccess="getComments" :articleId="id" :loading="loading"></comment>
           </div>
@@ -99,6 +98,7 @@ export default {
       likeArticles: [],
       id: '',
       loading: false,
+      // comments: []
     }
   },
   computed: {
@@ -111,7 +111,7 @@ export default {
         this.articleLike = article.like_count
         return article
       },
-      // comments: state => state.article.comments
+      comments: state => state.article.comments
     }),
     markedContent() {
       if (this.article.content) {
@@ -143,6 +143,7 @@ export default {
   methods: {
     // 获取评论
     getComments() {
+      console.log(2323)
       this.$store.dispatch('article/getComments', {
         articleId: this.id
       })

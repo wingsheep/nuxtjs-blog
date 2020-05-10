@@ -1,32 +1,32 @@
 <template>
   <ul class="comment-list">
     <li class="comment-item" v-for="comment in comments" :key="comment.id">
-      <img class="avatar" :src="gravatar(comment.email)" :alt="comment.nickname || '匿名用户'">
+      <img class="avatar" :src="gravatar(comment.user_email)" :alt="comment.user_nickname || '匿名用户'">
       <section class="comment-detail markdown">
         <div class="nickname">
-          <img class="mobile-avatar" :src="gravatar(comment.email)" :alt="comment.nickname || '匿名用户'">
-          <a v-if="comment.website" class="website icon icon-planet" :href="comment.website" target="_blank"></a>
-          <span>{{comment.nickname}}</span>
+          <img class="mobile-avatar" :src="gravatar(comment.user_email)" :alt="comment.user_nickname || '匿名用户'">
+          <a v-if="comment.user_url" class="website icon icon-planet" :href="comment.user_url" target="_blank"></a>
+          <span>{{comment.user_nickname}}</span>
         </div>
         <div class="content" v-html="comment.content"></div>
-        <section class="reply-wrapper markdown" v-if="comment.parent_id !== 0">
+        <section class="reply-wrapper markdown" v-if="comment.parent_id">
           <div class="reply-nickname" v-if="comment.replyName">@{{comment.replyName}}:</div>
           <div v-html="comment.replyContent"></div>
         </section>
         <footer class="comment-footer">
-          <time class="time" :datetime="comment.createdDate | filterTime">{{comment.created_date | filterTime}}</time>
+          <time class="time" :datetime="comment.createdAt | filterDate">{{comment.createdAt | filterDate}}</time>
           <div class="tools">
-            <i class="icon icon-like" :class="{'is-like': isLike(comment.id)}" @click="likeComment(comment)">
-              <span class="like-count">{{comment.like}}</span>
+            <i class="iconfont icon-good" :class="{'is-like': isLike(comment.id)}" @click="likeComment(comment)">
+              <span class="like-count">{{comment.like_count}}</span>
             </i>
-            <i class="icon icon-reply" @click="reply(comment)"></i>
+            <i class="iconfont icon-comment" @click="reply(comment)"></i>
           </div>
         </footer>
         <div class="split"></div>
       </section>
     </li>
     <loading v-if="loading"></loading>
-    <empty v-if="!loading && !comments.length" :message="'还没有评论 /(ㄒoㄒ)/~~'" :isBack="false"></empty>
+    <div v-if="!loading && !comments.length">还没有评论 /(ㄒoㄒ)/~~</div>
   </ul>
 </template>
 

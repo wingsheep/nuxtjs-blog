@@ -74,8 +74,10 @@ export const actions = {
 
   async getComments({ commit }, params) {
     try {
-      const comments = await comment.getComments(params)
-      commit('setComments', comments)
+      const {data: {result, data:{count, rows}}} = await this.$axios.get('/blog/comment/getList', {
+        params: params
+      })
+      commit('setComments', result ? rows : [])
     } catch (e) {
       console.log(e)
     }
@@ -103,7 +105,7 @@ export const actions = {
   },
 
   async createComment(_, params) {
-    return await comment.createComment(params)
+    return await this.$axios.post('/blog/comment/create', params)
   },
 
   async replyComment(_, params) {

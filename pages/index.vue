@@ -29,7 +29,7 @@ export default {
       total: 0,
       articleList: [],
       listQuery: {
-        offset: 1,
+        offset: +this.$route.query.offset || 1,
         limit: 10
       }
     }

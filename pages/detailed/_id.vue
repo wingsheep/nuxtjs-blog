@@ -7,12 +7,12 @@
           <el-col :span="24">
             <dl>
               <dd :span="5">
-                <i class="iconfont icon-calendar" />
+                <i class="iconfont icon-rili" />
                 <a>{{article.date | filterDate}}</a>
               </dd>
               <dd :span="3">
-                <i class="iconfont icon-comments" />
-                <a>15条评论</a>
+                <i class="iconfont icon-comment" />
+                <a>{{article.comment}}条评论</a>
               </dd>
               <dd :span="3">
                 <i class="iconfont icon-read" />
@@ -23,7 +23,7 @@
                 <a>{{articleLike}}人点赞</a>
               </dd>
               <dd :span="3">
-                <i class="iconfont icon-bussiness-man" />
+                <i class="iconfont icon-user" />
                 <a>罗小黑</a>
               </dd>
             </dl>

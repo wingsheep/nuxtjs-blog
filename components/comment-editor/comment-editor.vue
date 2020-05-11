@@ -19,7 +19,7 @@
             contenteditable="true"
             @keyup="contentChange"
             @click="getCursorPosition"
-            placeholder="千生百世，缘起缘灭，皆已注定..."
+            :placeholder="placeholder"
           ></div>
         </section>
         <!-- 工具栏 -->
@@ -104,6 +104,10 @@ export default {
     isMessageEditor: {
       type: Boolean,
       default: false
+    },
+    placeholder: {
+      type: String,
+      default: '千生百世，缘起缘灭，皆已注定...'
     }
   },
 

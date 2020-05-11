@@ -4,8 +4,7 @@
       <img class="avatar" :src="gravatar(comment.user_email)" :alt="comment.user_nickname || '匿名用户'">
       <section class="comment-detail markdown">
         <div class="nickname">
-          <img class="mobile-avatar" :src="gravatar(comment.user_email)" :alt="comment.user_nickname || '匿名用户'">
-          <a v-if="comment.user_url" class="website icon icon-planet" :href="comment.user_url" target="_blank"></a>
+          <!-- <a v-if="comment.user_url" class="website icon icon-planet" :href="comment.user_url" target="_blank"></a> -->
           <span>{{comment.user_nickname}}</span>
         </div>
         <div class="content" v-html="comment.content"></div>
@@ -19,12 +18,12 @@
             <i class="iconfont icon-good" :class="{'is-like': isLike(comment.id)}" @click="likeComment(comment)">
               <span class="like-count">{{comment.like_count}}</span>
             </i>
-            <i class="iconfont icon-comment" @click="reply(comment)"></i>
+            <span class="replay" @click="reply(comment)">回复</span>
           </div>
         </footer>
+        <comment-editor v-if="comment.showReplay" :placeholder="`回复：${comment.user_nickname}`"></comment-editor>
         <div class="split"></div>
       </section>
-      <!-- <comment-editor v-if="comment.showReplay"></comment-editor> -->
     </li>
     <loading v-if="loading"></loading>
     <div v-if="!loading && !comments.length">还没有评论 /(ㄒoㄒ)/~~</div>
@@ -118,43 +117,22 @@ export default {
     height: 36px;
     border-radius: 50%;
     background-color: #eee;
-
-    @media (max-width: 479px) {
-      display: none;
-    }
   }
 
   .comment-detail {
     width: calc(100% - 50px);
-
-    @media (max-width: 479px) {
-      width: 100%;
-    }
-
     .nickname {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-
-      .mobile-avatar {
-        display: none;
-
-        @media (max-width: 479px) {
-          display: inline-block;
-          width: 26px;
-          height: 26px;
-          margin-right: 10px;
-          border-radius: 50%;
-          background-color: #eee;
-        }
+      text-align: left;
+      font-size: 14px;
+      color: #6d757a;
+      font-weight: 600;
+      &:hover {
+        color: #00a1d6;
+        cursor: pointer;
       }
-
       .website {
         font-size: 16px;
-        margin-right: 6px;
       }
-
-      font-size: 14px;
     }
 
     .content {
@@ -180,17 +158,20 @@ export default {
 
     .comment-footer {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: center;
-
+      color: #99a2aa;
+      margin-bottom: 10px;
       .time {
         font-size: 12px;
       }
 
       .tools {
+        margin-left: 15px;
         display: flex;
         justify-content: flex-start;
-
+        align-items: center;
+        font-size: 12px;
         >i {
           display: flex;
           justify-content: center;
@@ -199,7 +180,7 @@ export default {
           height: 30px;
           margin-right: 10px;
           cursor: pointer;
-
+          font-size: 12px;
           &:last-child {
             margin-right: 0;
           }
@@ -208,7 +189,17 @@ export default {
             margin-left: 5px;
           }
         }
-
+        span.replay {
+          padding: 0 5px;
+          border-radius: 4px;
+          margin-right: 15px;
+          cursor: pointer;
+          display: inline-block;
+          &:hover {
+            color: #00a1d6;
+            background: #e5e9ef;
+          }
+        }
         .is-like {
           color: red;
         }

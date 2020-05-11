@@ -14,7 +14,7 @@
           <div v-html="comment.replyContent"></div>
         </section>
         <footer class="comment-footer">
-          <time class="time" :datetime="comment.createdAt | filterDate">{{comment.createdAt | filterDate}}</time>
+          <time class="time" :datetime="comment.createdAt | filterDate">{{comment.createdAt | filterDate('YYYY-MM-DD HH:mm')}}</time>
           <div class="tools">
             <i class="iconfont icon-good" :class="{'is-like': isLike(comment.id)}" @click="likeComment(comment)">
               <span class="like-count">{{comment.like_count}}</span>
@@ -24,6 +24,7 @@
         </footer>
         <div class="split"></div>
       </section>
+      <!-- <comment-editor v-if="comment.showReplay"></comment-editor> -->
     </li>
     <loading v-if="loading"></loading>
     <div v-if="!loading && !comments.length">还没有评论 /(ㄒoㄒ)/~~</div>
@@ -32,8 +33,11 @@
 
 <script>
 import gravatar from '@/services/gravatar/gravatar'
-
+import CommentEditor from "@/components/comment-editor/comment-editor";
 export default {
+  components: {
+    CommentEditor
+  },
   props: {
     comments: {
       type: Array,
@@ -57,8 +61,10 @@ export default {
       return this.likeComments.includes(commentId)
     },
 
-    reply(commentId) {
-      this.$emit('reply', commentId)
+    reply(comment) {
+      console.log(comment)
+      this.$store.commit('article/setCommentShowReplay', comment.id)
+      // this.$emit('reply', commentId)
     },
 
     gravatar(email) {

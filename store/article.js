@@ -30,6 +30,7 @@ export const mutations = {
 
   setComments(state, comments = []) {
     comments.forEach(v => {
+      v.showReplay = false
       v.content = marked(v.content)
       if (v.parent_id !== 0) {
         const reply = comments.find(target => target.id === v.parent_id)
@@ -44,7 +45,14 @@ export const mutations = {
     })
     state.comments = comments
   },
-
+  setCommentShowReplay(state, commentId ) {
+    state.comments.forEach(item => {
+      item.showReplay = false
+      if (item.id === commentId) {
+        item.showReplay = true
+      }
+    })
+  },
   setArticleDetail(state, article) {
     state.article = article
   },

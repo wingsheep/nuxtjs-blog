@@ -4,13 +4,13 @@
     <section class="comment-wrapper">
       <transition-group class="slide-wrapper" tag="div" name="list-slide">
         <!-- 回复内容区域 -->
-        <section class="list-slide-item reply-item" v-if="isShowReplyContent" :key="1">
+        <!-- <section class="list-slide-item reply-item" v-if="isShowReplyContent" :key="1">
           <div v-if="isShowReplyContent" class="reply-target">
             <i class="icon icon-ant-close" @click="closeReplyContent"></i>
             <strong class="reply-author">@{{reply.nickname}}</strong>
             <div class="reply-content markdown" v-html="reply.content"></div>
           </div>
-        </section>
+        </section> -->
         <!-- 评论内容区域 -->
         <section class="list-slide-item editor-item" :key="2">
           <div
@@ -19,7 +19,7 @@
             contenteditable="true"
             @keyup="contentChange"
             @click="getCursorPosition"
-            placeholder="你是我一生只会遇见一次的惊喜..."
+            placeholder="千生百世，缘起缘灭，皆已注定..."
           ></div>
         </section>
         <!-- 工具栏 -->
@@ -406,6 +406,7 @@ export default {
       left: 10px;
       top: 10px;
       transform-origin: 0 0;
+      font-size: 14px;
       pointer-events: none;
       transition: all .25s;
     }
@@ -415,7 +416,7 @@ export default {
     }
 
     &:focus {
-      border-color: #fe9600;
+      border-color: #029fe9;
 
       &:before {
         content: attr(placeholder);
@@ -426,7 +427,8 @@ export default {
         pointer-events: none;
         transition: all .25s;
         color: #fff;
-        background-color: orange;
+        background-color: #029fe9;
+        font-size: 16px;
         padding: 0 4px;
         transform: scale(0.75) translate(0px, -24px);
         border-radius: 3px;

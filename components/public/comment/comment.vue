@@ -2,7 +2,6 @@
   <div class="comment-container">
     <comment-editor
       ref="editor"
-      :isShowReplyContent="isShowReplyContent"
       @closeReplyContent="closeReply"
       @send="onSend"
     ></comment-editor>
@@ -40,24 +39,23 @@ export default {
 
   data() {
     return {
-      isShowReplyContent: false,
       parentId: 0
     };
   },
 
   methods: {
-    onReply(comment) {
-      this.parentId = comment.id
-      this.$refs.editor.reply = {
-        nickname: comment.nickname,
-        content: comment.content
-      }
-      this.isShowReplyContent = true;
+    onReply(data) {
+      // this.parentId = comment.id
+      // this.$refs.editor.reply = {
+      //   nickname: comment.nickname,
+      //   content: comment.content
+      // }
+      console.log(data)
+      this.onSend(data, true)
     },
 
     closeReply() {
-      this.isShowReplyContent = false
-      this.parentId = 0
+      // this.parentId = 0
       this.$refs.editor.reply = {
         nickname: '',
         content: ''
@@ -65,21 +63,21 @@ export default {
       this.$refs.editor.resetField()
     },
 
-    async onSend(data) {
+    async onSend(data, flag) {
       const params = {
         article_id: this.articleId,
         content: data.content,
         user_email: data.email,
         user_nickname: data.nickname,
-        user_url: "https://www.happyfly.top",
+        user_url: data.website,
         parent_id: data.parentId
       }
       if (!this.articleId) {
         return
       }
-      if (this.isShowReplyContent) {
+      if (flag) {
         // 回复评论
-        if (!this.parentId) {
+        if (!params.parent_id) {
           return
         }
         try {

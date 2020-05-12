@@ -117,6 +117,6 @@ export const actions = {
   },
 
   async replyComment(_, params) {
-    return await comment.replyComment(params)
+    return await this.$axios.post('/blog/comment/create', params)
   }
 }

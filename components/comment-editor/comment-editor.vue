@@ -176,7 +176,7 @@ export default {
       this.contentChange()
       const inValidMsg = this.getInValidMsg()
       if (inValidMsg) {
-        alert(inValidMsg)
+        this.$message.warning(inValidMsg)
         return
       }
       if (process.client) {
@@ -237,9 +237,24 @@ export default {
           end: '\n```',
         }
       }
-      this.updateEditContent(contents[type])
+      if (contents[type]) {
+        this.updateEditContent(contents[type])
+      }
+      this.focusSelection(this.$refs.editContent)
     },
-
+    focusSelection(dom) {
+       if (window.getSelection) {//ie11 10 9 ff safari
+        dom.focus(); //解决ff不获取焦点无法定位问题
+        const range = window.getSelection();//创建range
+        range.selectAllChildren(dom);//range 选择obj下所有子内容
+        range.collapseToEnd();//光标移至最后
+      } else if (document.selection) {//ie10 9 8 7 6 5
+        const range = document.selection.createRange();//创建选择对象
+        range.moveToElementText(dom);//range定位到obj
+        range.collapse(false);//光标移至最后
+        range.select();
+      }
+    },
     insertEmoji (emoji) {
       const editor = this.$refs.editContent
       const text = editor.innerText
@@ -404,6 +419,7 @@ export default {
     background-position: right;
     resize: vertical;
     text-align: left;
+    background-color: #f4f5f7;
     &:empty:before {
       content: attr(placeholder);
       position: absolute;
@@ -416,12 +432,13 @@ export default {
     }
 
     &:hover {
-      border-color: #ccc;
+      border-color: #029fe9;
+      background-color: #fff;
     }
 
     &:focus {
       border-color: #029fe9;
-
+      background-color: #fff;
       &:before {
         content: attr(placeholder);
         position: absolute;

@@ -21,7 +21,12 @@
             <span class="replay" @click="reply(comment)">回复</span>
           </div>
         </footer>
-        <comment-editor v-if="comment.showReplay" :placeholder="`回复：${comment.user_nickname}`"></comment-editor>
+        <comment-editor
+          ref="replayEditor"
+          v-if="comment.showReplay"
+          :placeholder="`回复：${comment.user_nickname}`"
+          @send="sendReplay($event, comment)">
+        </comment-editor>
         <div class="split"></div>
       </section>
     </li>
@@ -61,11 +66,23 @@ export default {
     },
 
     reply(comment) {
-      console.log(comment)
+      // console.log(comment)
       this.$store.commit('article/setCommentShowReplay', comment.id)
+      this.$nextTick(() => {
+        console.log( this.$refs.replayEditor[0].insertContent())
+        // this.$refs.replayEditor.focus()
+      })
       // this.$emit('reply', commentId)
     },
-
+    sendReplay(params, comment) {
+      const data = {
+        ...params,
+        parentId: comment.id,
+        articleId: comment.article_id
+      }
+      console.log(data)
+      this.$emit('reply', data)
+    },
     gravatar(email) {
       return gravatar(email)
     },

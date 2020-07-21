@@ -2,9 +2,9 @@
   <footer class="com-footer">
     <div class="footer-content">
       <p>本站由<span>
-        <a href="https://www.nuxtjs.cn/" target="_blank">Nuxtjs</a>
+        <a href="https://www.nuxtjs.cn/" target="_blank">Vue</a>
         +
-        <a href="https://eggjs.org/zh-cn/"  target="_blank">EggJS</a>
+        <a href="https://eggjs.org/zh-cn/"  target="_blank">Node</a>
         +
         <a href="https://element.eleme.cn/" target="_blank">Element ui</a>
         </span>

@@ -45,13 +45,13 @@ const actions = {
     commit('setMenusList', result1 ? data1 : [])
 
     const {data:{result: result2, data: data2}} = await app.$axios.get('/blog/getArchiveListByMonth')
-    const formatData2 = data2.map(item => {
+    const formatData2 = data2 ? data2.map(item => {
       return {
         ...item,
         date: dayjs(item.month).format('YYYY-MM'),
         month: dayjs(item.month).format('YYYY年MM月')
       }
-    })
+    }) : []
     commit('setArchiveListByMonth', result2 ? formatData2 : [])
 
     const {data:{result: result3, data: data3}} = await app.$axios.get('/blog/getArticleTabs')

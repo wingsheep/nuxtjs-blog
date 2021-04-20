@@ -13,11 +13,12 @@ export const mutations = {
 export const actions = {
   async getFriendLinks({ commit }) {
     try {
-      let {data: {result, data} }= await this.$axios.get('/blog/getFriendLinks')
+      const { data: { result, data }} = await this.$axios.get('/blog/getFriendLinks')
+      console.table(data)
       commit('setFriendlink', result ? data : [])
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log(e)
     }
-  },
+  }
 }

@@ -13,7 +13,7 @@ export const mutations = {
 export const actions = {
   async getFollowList({ commit }, type) {
     try {
-      let {data: {result, data} }= await this.$axios.get('/blog/getFollowList', {
+      const { data: { result, data }} = await this.$axios.get('/blog/getFollowList', {
         params: {
           vmid: 126384053,
           type
@@ -24,5 +24,5 @@ export const actions = {
       // eslint-disable-next-line no-console
       console.log(e)
     }
-  },
+  }
 }

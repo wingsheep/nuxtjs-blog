@@ -13,7 +13,7 @@ class Comment {
 
   // 点赞某条评论
   async likeComment(id) {
-    const res = await put('v1/blog/article/like/comment', {id})
+    const res = await put('v1/blog/article/like/comment', { id })
     return res
   }
 

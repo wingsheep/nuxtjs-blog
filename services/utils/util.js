@@ -37,14 +37,14 @@ Utils.timestampToTime = (timestamp, formats) => {
   // 2. Y-m-d H:i:s
   // 3. Y年m月d日
   // 4. Y年m月d日 H时i分
-  formats = formats || 'Y-m-d H:i:s';
+  formats = formats || 'Y-m-d H:i:s'
 
-  const zero = function (value) {
-      if (value < 10) {
-          return '0' + value;
-      }
-      return value;
-  };
+  const zero = function(value) {
+    if (value < 10) {
+      return '0' + value
+    }
+    return value
+  }
 
   // const myDate = timestamp * 1000 ? new Date(timestamp * 1000): new Date();
   const myDate = new Date(timestamp)
@@ -57,15 +57,15 @@ Utils.timestampToTime = (timestamp, formats) => {
   const minute = zero(myDate.getMinutes())
   const second = zero(myDate.getSeconds())
 
-  return formats.replace(/Y|m|d|H|i|s/ig, function (matches) {
-      return ({
-          Y: year,
-          m: month,
-          d: day,
-          H: hour,
-          i: minute,
-          s: second
-      })[matches]
+  return formats.replace(/Y|m|d|H|i|s/ig, function(matches) {
+    return ({
+      Y: year,
+      m: month,
+      d: day,
+      H: hour,
+      i: minute,
+      s: second
+    })[matches]
   })
 }
 

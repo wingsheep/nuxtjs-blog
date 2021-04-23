@@ -12,43 +12,43 @@
           </div>
         </section> -->
         <!-- 评论内容区域 -->
-        <section class="list-slide-item editor-item" :key="2">
+        <section :key="2" class="list-slide-item editor-item">
           <div
             ref="editContent"
             class="editor"
             contenteditable="true"
+            :placeholder="placeholder"
             @keyup="contentChange"
             @click="getCursorPosition"
-            :placeholder="placeholder"
-          ></div>
+          />
         </section>
         <!-- 工具栏 -->
-        <section class="list-slide-item tools-wrapper tools-item" :key="3">
+        <section :key="3" class="list-slide-item tools-wrapper tools-item">
           <div class="editor-tools">
-            <a class="tool-item" @click="isShowEmoji = true" v-click-outside="() => {isShowEmoji = false}">
-              <i class="iconfont icon-biaoqing"></i>
-              <ul class="emoji-wrapper" v-show="isShowEmoji">
-                <li class="emoji-item" v-for="(emoji, index) in emojiList" :key="index" @click.stop="insertEmoji(emoji)">
-                  {{emoji}}
+            <a v-click-outside="() => {isShowEmoji = false}" class="tool-item" @click="isShowEmoji = true">
+              <i class="iconfont icon-biaoqing" />
+              <ul v-show="isShowEmoji" class="emoji-wrapper">
+                <li v-for="(emoji, index) in emojiList" :key="index" class="emoji-item" @click.stop="insertEmoji(emoji)">
+                  {{ emoji }}
                 </li>
               </ul>
             </a>
             <a class="tool-item" @click="insertContent('image')">
-              <i class="iconfont icon-tupian"></i>
+              <i class="iconfont icon-tupian" />
             </a>
             <a class="tool-item" @click="insertContent('link')">
-              <i class="iconfont icon-lianjie"></i>
+              <i class="iconfont icon-lianjie" />
             </a>
             <a class="tool-item" @click="insertContent('code')">
-              <i class="iconfont icon-code"></i>
+              <i class="iconfont icon-code" />
             </a>
           </div>
           <a class="tool-item" @click="debouncedSend">
-            <i class="iconfont icon-send"></i>
+            <i class="iconfont icon-send" />
           </a>
         </section>
-        <div class="list-slide-item user-item" :key="4">
-          <section class="user-wrapper" key="4">
+        <div :key="4" class="list-slide-item user-item">
+          <section key="4" class="user-wrapper">
             <input
               v-model="form.nickname"
               maxlength="32"
@@ -59,8 +59,8 @@
               :placeholder="isMessageEditor ? '昵称（非必填）' : '昵称（必填）'"
             >
             <input
-              v-model="form.email"
               v-if="!isMessageEditor"
+              v-model="form.email"
               class="user-input"
               :required="isMessageEditor ? false : true"
               name="email"
@@ -68,8 +68,8 @@
               placeholder="邮箱（必填）"
             >
             <input
-              v-model="form.website"
               v-if="!isMessageEditor"
+              v-model="form.website"
               class="user-input"
               name="url"
               type="url"
@@ -95,6 +95,10 @@ const emojiList = [
 ]
 
 export default {
+
+  directives: {
+    ClickOutside
+  },
   props: {
     isShowReplyContent: {
       type: Boolean,
@@ -120,24 +124,36 @@ export default {
         nickname: '',
         content: '',
         email: '',
-        website: '',
+        website: ''
       },
       reply: {
         replyNickname: '',
-        replyContent: '',
+        replyContent: ''
       },
       emojiList,
-      cursorPosition: 0,
+      cursorPosition: 0
     }
-  },
-
-  directives: {
-    ClickOutside
   },
 
   computed: {
     avatar() {
       return gravatar(this.form.email)
+    }
+  },
+
+  created() {
+    // 发送防抖
+    this.debouncedSend = debounce(1000, true, () => {
+      this.send()
+    })
+    if (process.client) {
+      let user = window.localStorage.getItem('USER')
+      if (user) {
+        user = JSON.parse(user)
+        this.form.nickname = user.nickname || ''
+        this.form.email = user.email || ''
+        this.form.website = user.website || ''
+      }
     }
   },
 
@@ -153,7 +169,7 @@ export default {
     },
 
     closeReplyContent() {
-      this.$emit("closeReplyContent");
+      this.$emit('closeReplyContent')
     },
 
     contentChange() {
@@ -183,7 +199,7 @@ export default {
         const user = {
           nickname: this.form.nickname,
           email: this.form.email,
-          website: this.form.website,
+          website: this.form.website
         }
         window.localStorage.setItem('USER', JSON.stringify(user))
       }
@@ -203,7 +219,7 @@ export default {
       if (this.form.website && Uitls.validateUrl(this.form.website) === false) {
         return '请填写正确的url格式'
       }
-      if (!this.form.content  || !this.form.content.replace(/\s/g, '')) {
+      if (!this.form.content || !this.form.content.replace(/\s/g, '')) {
         if (this.form.content.length > 1000 || this.form.content.split('\n').length > 30) {
           return `${this.isMessageEditor ? '留言' : '评论'}内容不能超过1000个字且控制在30行以内`
         }
@@ -230,11 +246,11 @@ export default {
         },
         link: {
           start: `[`,
-          end: `]()`,
+          end: `]()`
         },
         code: {
           start: '\n```\n',
-          end: '\n```',
+          end: '\n```'
         }
       }
       if (contents[type]) {
@@ -243,19 +259,19 @@ export default {
       this.focusSelection(this.$refs.editContent)
     },
     focusSelection(dom) {
-       if (window.getSelection) {//ie11 10 9 ff safari
-        dom.focus(); //解决ff不获取焦点无法定位问题
-        const range = window.getSelection();//创建range
-        range.selectAllChildren(dom);//range 选择obj下所有子内容
-        range.collapseToEnd();//光标移至最后
-      } else if (document.selection) {//ie10 9 8 7 6 5
-        const range = document.selection.createRange();//创建选择对象
-        range.moveToElementText(dom);//range定位到obj
-        range.collapse(false);//光标移至最后
-        range.select();
+      if (window.getSelection) { // ie11 10 9 ff safari
+        dom.focus() // 解决ff不获取焦点无法定位问题
+        const range = window.getSelection()// 创建range
+        range.selectAllChildren(dom)// range 选择obj下所有子内容
+        range.collapseToEnd()// 光标移至最后
+      } else if (document.selection) { // ie10 9 8 7 6 5
+        const range = document.selection.createRange()// 创建选择对象
+        range.moveToElementText(dom)// range定位到obj
+        range.collapse(false)// 光标移至最后
+        range.select()
       }
     },
-    insertEmoji (emoji) {
+    insertEmoji(emoji) {
       const editor = this.$refs.editContent
       const text = editor.innerText
       // 插入 emoji
@@ -266,7 +282,6 @@ export default {
       this.cursorPosition = getCursorPosition(editor) + 2 // emoji 占两位
       this.contentChange()
     },
-
 
     updateEditContent({ start = '', end = '' }) {
       if (!start && !end) {
@@ -282,24 +297,8 @@ export default {
         editor.innerText = editor.innerText += (start + end)
       }
     }
-  },
-
-  created() {
-    // 发送防抖
-    this.debouncedSend = debounce(1000, true, () => {
-      this.send()
-    })
-    if (process.client) {
-      let user = window.localStorage.getItem('USER')
-      if (user) {
-        user = JSON.parse(user)
-        this.form.nickname = user.nickname || ''
-        this.form.email = user.email || ''
-        this.form.website = user.website || ''
-      }
-    }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

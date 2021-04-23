@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-    <userInfo v-if="!$store.state.hideSideBar"/>
+    <userInfo v-if="!$store.state.hideSideBar" />
     <articleTabs />
     <tags v-if="!$store.state.hideSideBar && $route.name !== 'archive'" />
     <archive v-if="!$store.state.hideSideBar && $route.name !== 'archive'" />

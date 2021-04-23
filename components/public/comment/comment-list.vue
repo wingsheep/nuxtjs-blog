@@ -1,43 +1,43 @@
 <template>
   <ul class="comment-list">
-    <li class="comment-item" v-for="comment in comments" :key="comment.id">
+    <li v-for="comment in comments" :key="comment.id" class="comment-item">
       <img class="avatar" :src="gravatar(comment.user_email)" :alt="comment.user_nickname || '匿名用户'">
       <section class="comment-detail markdown">
         <div class="nickname">
           <!-- <a v-if="comment.user_url" class="website icon icon-planet" :href="comment.user_url" target="_blank"></a> -->
-          <span>{{comment.user_nickname}}</span>
+          <span>{{ comment.user_nickname }}</span>
         </div>
-        <div class="content" v-html="comment.content"></div>
-        <section class="reply-wrapper markdown" v-if="comment.parent_id">
-          <div class="reply-nickname" v-if="comment.replyName">@{{comment.replyName}}:</div>
-          <div v-html="comment.replyContent"></div>
+        <div class="content" v-html="comment.content" />
+        <section v-if="comment.parent_id" class="reply-wrapper markdown">
+          <div v-if="comment.replyName" class="reply-nickname">@{{ comment.replyName }}:</div>
+          <div v-html="comment.replyContent" />
         </section>
         <footer class="comment-footer">
-          <time class="time" :datetime="comment.createdAt | filterDate">{{comment.createdAt | filterDate('YYYY-MM-DD HH:mm')}}</time>
+          <time class="time" :datetime="comment.createdAt | filterDate">{{ comment.createdAt | filterDate('YYYY-MM-DD HH:mm') }}</time>
           <div class="tools">
             <i class="iconfont icon-good" :class="{'is-like': isLike(comment.id)}" @click="likeComment(comment)">
-              <span class="like-count">{{comment.like_count}}</span>
+              <span class="like-count">{{ comment.like_count }}</span>
             </i>
             <span class="replay" @click="reply(comment)">回复</span>
           </div>
         </footer>
         <comment-editor
-          ref="replayEditor"
           v-if="comment.showReplay"
+          ref="replayEditor"
           :placeholder="`回复：${comment.user_nickname}`"
-          @send="sendReplay($event, comment)">
-        </comment-editor>
-        <div class="split"></div>
+          @send="sendReplay($event, comment)"
+        />
+        <div class="split" />
       </section>
     </li>
-    <loading v-if="loading"></loading>
+    <loading v-if="loading" />
     <div v-if="!loading && !comments.length">还没有评论 /(ㄒoㄒ)/~~</div>
   </ul>
 </template>
 
 <script>
 import gravatar from '@/services/gravatar/gravatar'
-import CommentEditor from "@/components/comment-editor/comment-editor";
+import CommentEditor from '@/components/comment-editor/comment-editor'
 export default {
   components: {
     CommentEditor
@@ -60,6 +60,10 @@ export default {
     }
   },
 
+  created() {
+    this.getLikeComments()
+  },
+
   methods: {
     isLike(commentId) {
       return this.likeComments.includes(commentId)
@@ -69,7 +73,7 @@ export default {
       // console.log(comment)
       this.$store.commit('article/setCommentShowReplay', comment.id)
       this.$nextTick(() => {
-        console.log( this.$refs.replayEditor[0].insertContent())
+        console.log(this.$refs.replayEditor[0].insertContent())
         // this.$refs.replayEditor.focus()
       })
       // this.$emit('reply', commentId)
@@ -92,7 +96,7 @@ export default {
         return
       }
       try {
-        const res = this.$store.dispatch('article/likeComment', item.id)
+        await this.$store.dispatch('article/likeComment', item.id)
         this.likeComments.push(item.id)
         if (process.client) {
           window.localStorage.setItem('LIKE_COMMENTS', JSON.stringify(this.likeComments))
@@ -108,10 +112,6 @@ export default {
         this.likeComments = JSON.parse(window.localStorage.getItem('LIKE_COMMENTS') || '[]')
       }
     }
-  },
-
-  created() {
-    this.getLikeComments()
   }
 }
 </script>

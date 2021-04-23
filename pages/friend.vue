@@ -6,7 +6,7 @@
         <span>我想要变强, 因为我遇到了许多的邂逅、有了想要守护的事物。 - 夏目友人帐</span>
       </p>
     </div>
-    <div class="friend">
+    <div v-if="friendlinkList && friendlinkList.length" class="friend">
       <ul>
         <li
           v-for="(item, index) in friendlinkList"
@@ -14,11 +14,7 @@
           :style="{ background: randomRgbColor() }"
         >
           <a :href="item.url" target="_blank">
-            <img
-              v-show="item.img_url"
-              :src="item.img_url"
-              @error="item.img_url = ''"
-            >
+            <img :src="item.img_url" @error="item.img_url = ''">
             <span v-show="!item.img_url">{{ item.name.slice(0, 1) }}</span>
             <h4>{{ item.name }}</h4>
             <p>{{ item.desc }}</p>
@@ -43,19 +39,25 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   scrollToTop: true,
   async fetch({ store, params }) {
-    console.log('fetch friendlink')
-    await store.dispatch('friendlink/getFriendLinks')
+    // console.log(this.friendlinkList)
+    return await store.dispatch('friend/getFriendLinks')
   },
   data() {
-    return {}
+    return {
+      // friendlinkList: []
+    }
   },
   computed: {
-    friendlinkList() {
-      return this.$store.state.friendlink.friendlink
-    }
+    ...mapState({
+      friendlinkList: state => state.friend.friendList.slice()
+    })
+    // friendlinkList() {
+    //   return this.$store.state.friend.friendList
+    // }
   },
   methods: {
     // 随机生成RGB颜色

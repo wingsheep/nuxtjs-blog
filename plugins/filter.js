@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import dayjs from 'dayjs'
 const filters = {
-  filterDate(date, formats = "YYYY-MM-DD") {
+  filterDate(date, formats = 'YYYY-MM-DD') {
     if (!date) {
       return ''
     }

@@ -9,40 +9,40 @@
         休息一下，看哈2233娘~
       </el-divider>
     </div>
-    <img :src="currentImg" referrer="no-referrer" />
+    <img :src="currentImg" referrer="no-referrer">
     <a href="#up">
-      <el-button type="primary"  @click="changeImg">换一张</el-button>
+      <el-button type="primary" @click="changeImg">换一张</el-button>
     </a>
   </div>
 </template>
 
 <script>
 export default {
-  props:['error'],
+  props: ['error'],
   data() {
     return {
       imgList: [],
       index: 0,
-      currentImg: '',
+      currentImg: ''
+    }
+  },
+  async created() {
+    const { data: { result, data }} = await this.$axios.get('/blog/getErrorData')
+    if (result) {
+      this.imgList = data
+      this.changeImg()
     }
   },
   methods: {
     goBack() {
       this.$router.go(-1)
     },
-    randomNumber (m = 0, n){
-      return Math.floor(Math.random()*(m - n) + n);
+    randomNumber(m = 0, n) {
+      return Math.floor(Math.random() * (m - n) + n)
     },
     changeImg() {
       this.index = this.randomNumber(0, this.imgList.length)
       this.currentImg = `https:${this.imgList[this.index]}`
-    }
-  },
-  async created () {
-    const {data: {result, data}} = await this.$axios.get('/blog/getErrorData')
-    if (result) {
-      this.imgList = data
-      this.changeImg()
     }
   }
 }

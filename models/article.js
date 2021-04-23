@@ -1,7 +1,10 @@
+import {
+  get, put
+} from '@/services/http/axios'
 class Article {
   // 获取所有文章
   async getArticles(params = {}) {
-    let query = {
+    const query = {
       categoryId: params.categoryId ? params.categoryId : 0,
       authorId: params.authorId ? params.authorId : 0,
       tagId: params.tagId ? params.tagId : 0,
@@ -41,13 +44,13 @@ class Article {
 
   // 点赞文章
   async likeArticle(id) {
-    const res = await put('v1/blog/article/like', {id})
+    const res = await put('v1/blog/article/like', { id })
     return res
   }
 
   // 搜索文章
   async searchArticles(params) {
-    let query = {
+    const query = {
       page: params.page ? params.page : 0,
       search: params.search
     }

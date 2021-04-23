@@ -21,7 +21,7 @@ const io = new IntersectionObserver(entries => {
     }
     el.onload = () => {
       el.classList.add('loaded')
-      el.previousElementSibling.classList.add('hidden');  // 图片加载后隐藏缩略图
+      el.previousElementSibling.classList.add('hidden') // 图片加载后隐藏缩略图
       io.unobserve(el)
     }
     el.onerror = () => io.unobserve(el)

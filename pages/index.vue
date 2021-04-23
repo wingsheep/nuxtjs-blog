@@ -24,6 +24,9 @@ export default {
     Article,
     Pagination
   },
+  async fetch({ store, query }) {
+    await store.dispatch('article/getArticles', query)
+  },
   data() {
     return {
       total: 0,
@@ -38,9 +41,6 @@ export default {
     this.getArticleList()
   },
   watchQuery: ['offset'],
-  async fetch({ store, query }) {
-    await store.dispatch('article/getArticles', query)
-  },
   methods: {
     async getArticleList() {
       this.$router.push({

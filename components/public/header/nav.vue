@@ -63,6 +63,11 @@ export default {
           icon: 'el-icon-monitor'
         },
         {
+          path: '/book',
+          name: '书籍',
+          icon: 'el-icon-notebook-1'
+        },
+        {
           path: '/about',
           name: '关于',
           icon: 'el-icon-user'
@@ -71,13 +76,13 @@ export default {
       ]
     }
   },
-  mounted () {
+  mounted() {
   },
   methods: {
     name() {
-      
+
     }
-  },
+  }
 }
 </script>
 

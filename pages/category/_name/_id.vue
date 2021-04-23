@@ -2,11 +2,11 @@
   <div class="page-category">
     <el-card>
       <div slot="header">
-        <h1>标签: <span>{{params.name}}</span></h1>
+        <h1>标签: <span>{{ params.name }}</span></h1>
       </div>
-      <p>至今为止已转载或分享了{{params.count}}篇{{params.name}}相关的博文了哟，加油！ヾ(◍°∇°◍)ﾉﾞ</p>
+      <p>至今为止已转载或分享了{{ params.count }}篇{{ params.name }}相关的博文了哟，加油！ヾ(◍°∇°◍)ﾉﾞ</p>
     </el-card>
-   
+
     <div class="article-list">
       <Article v-for="(item, index) in articleList" :key="index" :article-data="item" />
       <pagination
@@ -31,14 +31,8 @@ export default {
     Article,
     Pagination
   },
-  validate ({app, params }) {
+  validate({ app, params }) {
     return !!(app.store.state.tagsList.find(_ => _.id === params.id && _.name === params.name))
-  },
-  computed: {
-    params() {
-      const {id, name} = this.$route.params
-      return this.$store.state.tagsList.find(_ => _.id === id && _.name === name)
-    }
   },
   data() {
     return {
@@ -48,6 +42,12 @@ export default {
         offset: 1,
         limit: 10
       }
+    }
+  },
+  computed: {
+    params() {
+      const { id, name } = this.$route.params
+      return this.$store.state.tagsList.find(_ => _.id === id && _.name === name)
     }
   },
   created() {
@@ -60,7 +60,7 @@ export default {
           offset: this.listQuery.offset,
           limit: this.listQuery.limit,
           label_id: this.params.id,
-          name: this.params.name,
+          name: this.params.name
         }
       })
       if (result) {

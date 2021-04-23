@@ -12,8 +12,7 @@ function validate(binding) {
 }
 
 function isPopup(popupItem, elements) {
-  if (!popupItem || !elements)
-    return false
+  if (!popupItem || !elements) { return false }
 
   for (var i = 0, len = elements.length; i < len; i++) {
     try {
@@ -23,7 +22,7 @@ function isPopup(popupItem, elements) {
       if (elements[i].contains(popupItem)) {
         return false
       }
-    } catch(e) {
+    } catch (e) {
       return false
     }
   }
@@ -36,7 +35,7 @@ function isServer(vNode) {
 }
 
 exports = module.exports = {
-  bind: function (el, binding, vNode) {
+  bind: function(el, binding, vNode) {
     if (!validate(binding)) return
 
     // Define Handler and cache it on the element
@@ -61,11 +60,11 @@ exports = module.exports = {
     !isServer(vNode) && document.addEventListener('touchstart', handler)
   },
 
-  update: function (el, binding) {
+  update: function(el, binding) {
     if (validate(binding)) el.__vueClickOutside__.callback = binding.value
   },
 
-  unbind: function (el, binding, vNode) {
+  unbind: function(el, binding, vNode) {
     // Remove Event Listeners
     !isServer(vNode) && document.removeEventListener('click', el.__vueClickOutside__.handler)
     !isServer(vNode) && document.removeEventListener('touchstart', el.__vueClickOutside__.handler)

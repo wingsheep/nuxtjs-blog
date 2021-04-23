@@ -1,6 +1,6 @@
 // import article from '../models/article'
-// import comment from '../models/comment'
-import Utils from '../services/utils/util'
+import comment from '../models/comment'
+// import Utils from '../services/utils/util'
 import marked from '../plugins/marked'
 
 export const state = () => ({
@@ -45,7 +45,7 @@ export const mutations = {
     })
     state.comments = comments
   },
-  setCommentShowReplay(state, commentId ) {
+  setCommentShowReplay(state, commentId) {
     state.comments.forEach(item => {
       item.showReplay = false
       if (item.id === commentId) {
@@ -60,7 +60,7 @@ export const mutations = {
   setLikeComment(state, id) {
     state.comments.forEach(v => {
       if (v.id === id) {
-        v.like ++
+        v.like++
       }
     })
   }
@@ -70,7 +70,7 @@ export const actions = {
   // 获取文章列表
   async getArticles({ commit }, params) {
     try {
-      const { data: { result, data}} = await this.$axios.get('blog/article/list', {
+      const { data: { result, data }} = await this.$axios.get('blog/article/list', {
         params: params
       })
       commit('setArticles', result ? data : {})
@@ -79,10 +79,9 @@ export const actions = {
     }
   },
 
-
   async getComments({ commit }, params) {
     try {
-      const {data: {result, data:{count, rows}}} = await this.$axios.get('/blog/comment/getList', {
+      const { data: { result, data: { count, rows }}} = await this.$axios.get('/blog/comment/getList', {
         params: params
       })
       commit('setComments', result ? rows : [])
@@ -93,7 +92,7 @@ export const actions = {
 
   async getArticleDetail({ commit }, params) {
     try {
-      const {data:{result, data}} = await this.$axios.get(`blog/article/detail/${params.id}`, params)
+      const { data: { result, data }} = await this.$axios.get(`blog/article/detail/${params.id}`, params)
       commit('setArticleDetail', result ? data : {})
     } catch (e) {
       console.log(e)
@@ -101,10 +100,10 @@ export const actions = {
   },
 
   async likeArticle(_, id) {
-    return await await this.$axios.post(`blog/article/like/${id}`)
+    return await this.$axios.post(`blog/article/like/${id}`)
   },
 
-  async likeComment({ commit}, id) {
+  async likeComment({ commit }, id) {
     const res = await comment.likeComment(id)
     if (res.errorCode === 0) {
       commit('setLikeComment', id)

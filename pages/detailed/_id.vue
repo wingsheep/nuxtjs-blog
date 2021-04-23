@@ -1,5 +1,5 @@
 <template>
-  <div class="page-articleed" id="page_articleed" ref="scroll">
+  <div id="page_articleed" ref="scroll" class="page-articleed">
     <el-card>
       <div slot="header">
         <h1>{{ article.title }}</h1>
@@ -8,19 +8,19 @@
             <dl>
               <dd :span="5">
                 <i class="iconfont icon-rili" />
-                <a>{{article.date | filterDate}}</a>
+                <a>{{ article.date | filterDate }}</a>
               </dd>
               <dd :span="3">
                 <i class="iconfont icon-comment" />
-                <a>{{article.comment}}条评论</a>
+                <a>{{ article.comment }}条评论</a>
               </dd>
               <dd :span="3">
                 <i class="iconfont icon-read" />
-                <a>{{article.views}}阅读</a>
+                <a>{{ article.views }}阅读</a>
               </dd>
               <dd :span="3">
                 <i class="iconfont icon-good" />
-                <a>{{articleLike}}人点赞</a>
+                <a>{{ articleLike }}人点赞</a>
               </dd>
               <dd :span="3">
                 <i class="iconfont icon-user" />
@@ -36,36 +36,36 @@
       <article v-show="markedContent" ref="markdown" class="markdown" v-html="markedContent" />
       <footer class="post-footer">
         <div class="footer-tags">
-          <i class="iconfont icon-shengqian" /> 
+          <i class="iconfont icon-shengqian" />
           <span v-for="item in article.labels" :key="item.id">
-            <nuxt-link :to="`/category/${item.name}/${item.id}`">{{item.name}}</nuxt-link>
+            <nuxt-link :to="`/category/${item.name}/${item.id}`">{{ item.name }}</nuxt-link>
           </span>
         </div>
         <div class="footer-like" @click="giveAlike(article.id)">
-          <i class="iconfont" :class="isLike ? 'icon-good-fill' : 'icon-good'" :style="{color: isLike ? 'red' : ''}"></i>
-          <span>{{articleLike}}</span>
+          <i class="iconfont" :class="isLike ? 'icon-good-fill' : 'icon-good'" :style="{color: isLike ? 'red' : ''}" />
+          <span>{{ articleLike }}</span>
         </div>
       </footer>
       <section class="post-btns">
         <nuxt-link v-if="article.last_id" class="last-post" :to="`/detailed/${article.last_id}`">
-          <el-button plain  icon="el-icon-arrow-left">
+          <el-button plain icon="el-icon-arrow-left">
             上一篇
           </el-button>
         </nuxt-link>
         <nuxt-link v-if="article.next_id" class="next-post" :to="`/detailed/${article.next_id}`">
           <el-button plain>
             下一篇
-           <i class="el-icon-arrow-right el-icon--right"/>
+            <i class="el-icon-arrow-right el-icon--right" />
           </el-button>
         </nuxt-link>
       </section>
     </el-card>
     <el-card style="margin-top: 15px; text-align: center">
-       <!-- 评论区域 -->
+      <!-- 评论区域 -->
       <div ref="commentArea" class="article-container comment-container">
         <div class="content">
           <div class="comment-wrapper">
-            <comment :comments="comments" @createCommentSuccess="getComments" :articleId="id" :loading="loading"></comment>
+            <comment :comments="comments" :article-id="id" :loading="loading" @createCommentSuccess="getComments" />
           </div>
         </div>
       </div>
@@ -81,11 +81,6 @@ import { mapState, mapMutations } from 'vuex'
 
 export default {
   scrollToTop: true,
-  head() {
-    return {
-      title: this.article.title
-    }
-  },
   components: {
     Comment
   },
@@ -97,8 +92,13 @@ export default {
       articleLike: 0,
       likeArticles: [],
       id: '',
-      loading: false,
+      loading: false
       // comments: []
+    }
+  },
+  head() {
+    return {
+      title: this.article.title
     }
   },
   computed: {
@@ -122,7 +122,7 @@ export default {
     },
     isLike() {
       return this.likeArticles.includes(this.id)
-    },
+    }
   },
   async fetch({ store, params }) {
     await store.dispatch('article/getArticleDetail', {
@@ -132,11 +132,11 @@ export default {
       articleId: params.id
     })
   },
-    
+
   mounted() {
     this.$nextTick(() => {
       this.id = this.$route.params.id
-      this.getAPs();
+      this.getAPs()
       this.getLikeArticles()
     })
   },
@@ -155,7 +155,7 @@ export default {
       }
       const result = await this.$store.dispatch('article/likeArticle', id)
       if (result) {
-        this.articleLike ++
+        this.articleLike++
         this.likeArticles.push(id)
         window.localStorage.setItem('LIKE_ARTICLES', JSON.stringify(this.likeArticles))
       }
@@ -167,8 +167,8 @@ export default {
     },
     getAPs() {
       const nodeArr = ['H1', 'H2', 'H3', 'H4']
-      let nodeInfo = [] // 存储目录信息
-      let temp = {}
+      const nodeInfo = [] // 存储目录信息
+      const temp = {}
       let index = 0
       // 对文档根节点的每一个子节点进行遍历，选出所有需要解析的目录标题
       this.$refs.markdown.childNodes.forEach((item) => {
@@ -179,15 +179,15 @@ export default {
             txt: item.getAttribute('id'), // 存储该标题的文本 [ps：marked解析出来的h1-h6标题会在id里填上对应的标题文本]
             offsetTop: item.offsetTop, // 存储该标题离页面顶部的距离
             heading: `#heading-${index++}`
-          });
+          })
         }
-      });
+      })
       this.menuData = nodeInfo
       this.menuState = nodeInfo.length ? nodeInfo[0].txt : ''
       this.$store.commit('setTocList', nodeInfo)
-      this.$store.commit('setTocState',  this.menuState)
+      this.$store.commit('setTocState', this.menuState)
       this.checkMenuScroll()
-      if(this.$route.hash) {
+      if (this.$route.hash) {
         const item = this.menuData.find(_ => _.heading === this.$route.hash)
         this.scrollPage(item)
       } else {
@@ -198,55 +198,55 @@ export default {
       const scroll = document.querySelector('.layout-default')
       // this.scroll 为整个页面的根节点，用来监听滚动
       scroll.addEventListener('scroll', () => {
-        let scrollTop = scroll.scrollTop; // 获取当前页面的滚动距离
-        let menuState =  this.menuData.length ? this.menuData[0].txt : ''; // 设置menuState对象默认值为第一个标题的文字
-        
+        const scrollTop = scroll.scrollTop // 获取当前页面的滚动距离
+        let menuState = this.menuData.length ? this.menuData[0].txt : '' // 设置menuState对象默认值为第一个标题的文字
+
         // 对menuData循环检测，
         // 如果当前页面滚动距离 大于 一个标题离页面顶部 的距离，则将该标题的文字赋值给menuState，循环继续
         // 如果当前页面滚动距离 小于 一个标题离页面顶部 的距离，说明页面还没滚动到该标题的位置，当前标题尚未命中，之后的标题也不可能命中。 循环结束
-        for(let item of this.menuData) {
+        for (const item of this.menuData) {
           if (scrollTop >= item.offsetTop) {
-            menuState = item.txt;
+            menuState = item.txt
           } else {
-            break;
+            break
           }
         }
-        
+
         // 如果滑动到了页面的底部，则命中最后一个标题
         if (scroll.clientHeight + scrollTop === scroll.scrollHeight) {
-          menuState =  this.menuData.length ? this.menuData[this.menuData.length - 1].txt : '';
+          menuState = this.menuData.length ? this.menuData[this.menuData.length - 1].txt : ''
         }
-        
+
         // 如果当前命中标题和前一个命中标题的文本不一样，说明当前页面处于其他标题下的内容，切换menuState
         if (menuState !== this.menuState) {
           this.menuState = menuState
           this.$store.commit('setTocState', menuState)
         }
-      });
+      })
     },
     // 点击目录切换
-    scrollPage(item){
+    scrollPage(item) {
       const scroll = document.querySelector('.layout-default')
       // 创建一个setInterval，每16ms执行一次，接近60fps
-      let scrollToTop = window.setInterval(() => {
-        let currentScroll =scroll.scrollTop;
+      const scrollToTop = window.setInterval(() => {
+        const currentScroll = scroll.scrollTop
         if (currentScroll > item.offsetTop) {
           // 当页面向上滚动时操作
-         scroll.scrollTo(0, currentScroll - Math.ceil((currentScroll - item.offsetTop) / 5));
+          scroll.scrollTo(0, currentScroll - Math.ceil((currentScroll - item.offsetTop) / 5))
         } else if (currentScroll < item.offsetTop) {
           // 页面向下滚动时的操作
-          if (scroll.clientHeight + currentScroll ===scroll.scrollHeight) {
+          if (scroll.clientHeight + currentScroll === scroll.scrollHeight) {
             // 如果已经滚动到了底部，则直接跳出
             this.menuState = item.txt
             this.$store.commit('setTocState', item.txt)
-            window.clearInterval(scrollToTop);
+            window.clearInterval(scrollToTop)
           } else {
-           scroll.scrollTo(0, currentScroll + Math.ceil((item.offsetTop - currentScroll) / 5));
+            scroll.scrollTo(0, currentScroll + Math.ceil((item.offsetTop - currentScroll) / 5))
           }
         } else {
-          window.clearInterval(scrollToTop);
+          window.clearInterval(scrollToTop)
         }
-      }, 16); 
+      }, 16)
     }
   }
 }

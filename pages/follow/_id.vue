@@ -1,6 +1,6 @@
 <template>
   <el-card ref="followPage" class="follow-page">
-     <div slot="header">
+    <div slot="header">
       <h1>我的番剧</h1>
       <p>
         <span>哔哩哔哩 (゜-゜)つロ 干杯~-bilibili</span>
@@ -8,28 +8,29 @@
     </div>
     <dl class="tabs" :style="{top: `${scrollTop}px`}">
       <dd
-        :class="{active: item.active}"
         v-for="item in tabsList"
-        :key="item.CODE">
-        <nuxt-link  :to="`/follow/${item.CODE}`">{{ item.NAME }}</nuxt-link>
+        :key="item.CODE"
+        :class="{active: item.active}"
+      >
+        <nuxt-link :to="`/follow/${item.CODE}`">{{ item.NAME }}</nuxt-link>
       </dd>
     </dl>
     <el-row :gutter="10">
-      <el-col :span="8" v-for="item in followList" :key="item.media_id">
+      <el-col v-for="item in followList" :key="item.media_id" :span="8">
         <a :href="item.url" target="_blank">
           <el-card :body-style="{ padding: '0px' }" shadow="hover">
             <img :src="item.cover" class="image">
             <div style="padding: 14px;">
-              <h2>{{item.title}}</h2>
-              <p>{{item.evaluate}}</p>
+              <h2>{{ item.title }}</h2>
+              <p>{{ item.evaluate }}</p>
               <div class="bottom clearfix">
                 <span>{{ item.season_type_name }}</span>
-                <el-divider direction="vertical"></el-divider>
+                <el-divider direction="vertical" />
                 <span>{{ item.areas[0].name }}</span>
               </div>
               <div class="bottom clearfix">
                 <span>{{ item.progress }}</span>
-                <el-divider direction="vertical"></el-divider>
+                <el-divider direction="vertical" />
                 <span>{{ item.new_ep.index_show }}</span>
               </div>
             </div>
@@ -41,67 +42,67 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        scrollTop: 150,
-        timer: null
+export default {
+  async fetch({ store, params }) {
+    await store.dispatch('follow/getFollowList', params.id)
+  },
+  async asyncData({ app, params }) {
+    const tabsList = [
+      {
+        CODE: '1',
+        NAME: '追番',
+        active: true
+      },
+      {
+        CODE: '2',
+        NAME: '追剧',
+        active: false
       }
-    },
-    methods: {
-      handleScroll () {
-        const dom =  document.querySelector('.layout-default')
-        clearTimeout(this.timer)
-        this.timer = setTimeout(() => {
-          const scrollTop2 = dom.scrollTop || document.body.scrollTop
-          if(scrollTop2 == scrollTop1){
-            this.scrollTop = scrollTop2 <= 300 ? 150 : scrollTop2 - 150
-          }
-        }, 300);
-        const scrollTop1 = dom.scrollTop || document.body.scrollTop
+    ]
+    tabsList.forEach(item => {
+      item.active = false
+      if (item.CODE == params.id) {
+        item.active = true
       }
-    },
-    destroyed () {
-      document.querySelector('.layout-default').removeEventListener('scroll', this.handleScroll);
-      this.timer = null
-    },
-    mounted () {
-      this.$nextTick(() => {
-        document.querySelector('.layout-default').addEventListener('scroll', this.handleScroll);
-      })
-    },
-    computed: {
-      followList () {
-        return this.$store.state.follow.followList.list || []
-      }
-    },
-    async fetch({ store, params }) {
-      await store.dispatch('follow/getFollowList', params.id)
-    },
-    async asyncData({app, params}) {
-      const tabsList = [
-        {
-          CODE: '1',
-          NAME: '追番',
-          active: true
-        },
-        {
-          CODE: '2',
-          NAME: '追剧',
-          active: false
+    })
+    return {
+      tabsList
+    }
+  },
+  data() {
+    return {
+      scrollTop: 150,
+      timer: null
+    }
+  },
+  computed: {
+    followList() {
+      return this.$store.state.follow.followList.list || []
+    }
+  },
+  destroyed() {
+    document.querySelector('.layout-default').removeEventListener('scroll', this.handleScroll)
+    this.timer = null
+  },
+  mounted() {
+    this.$nextTick(() => {
+      document.querySelector('.layout-default').addEventListener('scroll', this.handleScroll)
+    })
+  },
+  methods: {
+    handleScroll() {
+      const dom = document.querySelector('.layout-default')
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        const scrollTop2 = dom.scrollTop || document.body.scrollTop
+        if (scrollTop2 == scrollTop1) {
+          this.scrollTop = scrollTop2 <= 300 ? 150 : scrollTop2 - 150
         }
-      ]
-      tabsList.forEach(item => {
-        item.active = false
-        if (item.CODE == params.id) {
-          item.active = true
-        }
-      })
-      return {
-        tabsList
-      }
+      }, 300)
+      const scrollTop1 = dom.scrollTop || document.body.scrollTop
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

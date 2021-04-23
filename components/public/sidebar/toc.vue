@@ -9,10 +9,11 @@
       <ol>
         <li
           v-for="(item, index) in $store.state.tocList"
-          :class="`${item.type}type`"
           :key="index"
-          @click="scrollPage(item)">
-          <a :class="$store.state.tocState === item.txt ? 'on' : ''" >{{item.txt}}</a>
+          :class="`${item.type}type`"
+          @click="scrollPage(item)"
+        >
+          <a :class="$store.state.tocState === item.txt ? 'on' : ''">{{ item.txt }}</a>
         </li>
       </ol>
     </section>
@@ -27,27 +28,27 @@ export default {
   },
   methods: {
     // 点击目录切换
-    scrollPage(item){
+    scrollPage(item) {
       const scroll = document.querySelector('.layout-default')
       // 创建一个setInterval，每16ms执行一次，接近60fps
-      let scrollToTop = window.setInterval(() => {
-        let currentScroll =scroll.scrollTop;
+      const scrollToTop = window.setInterval(() => {
+        const currentScroll = scroll.scrollTop
         if (currentScroll > item.offsetTop) {
           // 当页面向上滚动时操作
-         scroll.scrollTo(0, currentScroll - Math.ceil((currentScroll - item.offsetTop) / 5));
+          scroll.scrollTo(0, currentScroll - Math.ceil((currentScroll - item.offsetTop) / 5))
         } else if (currentScroll < item.offsetTop) {
           // 页面向下滚动时的操作
-          if (scroll.clientHeight + currentScroll ===scroll.scrollHeight) {
+          if (scroll.clientHeight + currentScroll === scroll.scrollHeight) {
             // 如果已经滚动到了底部，则直接跳出
             this.$store.state.commit('setTocState', item.txt)
-            window.clearInterval(scrollToTop);
+            window.clearInterval(scrollToTop)
           } else {
-           scroll.scrollTo(0, currentScroll + Math.ceil((item.offsetTop - currentScroll) / 5));
+            scroll.scrollTo(0, currentScroll + Math.ceil((item.offsetTop - currentScroll) / 5))
           }
         } else {
-          window.clearInterval(scrollToTop);
+          window.clearInterval(scrollToTop)
         }
-      }, 16); 
+      }, 16)
     }
   }
 }

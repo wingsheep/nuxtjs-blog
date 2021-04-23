@@ -19,7 +19,7 @@ export default {
     }
   },
   computed: {
-    tagsList () {
+    tagsList() {
       return this.$store.state.tagsList
     }
   }

@@ -4,16 +4,16 @@
       ref="editor"
       @closeReplyContent="closeReply"
       @send="onSend"
-    ></comment-editor>
+    />
     <div class="comment-list-wrapper">
-      <comment-list :comments="comments" @reply="onReply" :loading="loading"></comment-list>
+      <comment-list :comments="comments" :loading="loading" @reply="onReply" />
     </div>
   </div>
 </template>
 
 <script>
-import CommentList from "./comment-list";
-import CommentEditor from "@/components/comment-editor/comment-editor";
+import CommentList from './comment-list'
+import CommentEditor from '@/components/comment-editor/comment-editor'
 
 export default {
   components: {
@@ -40,7 +40,7 @@ export default {
   data() {
     return {
       parentId: 0
-    };
+    }
   },
 
   methods: {
@@ -103,7 +103,7 @@ export default {
       }
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

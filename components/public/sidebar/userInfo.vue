@@ -3,8 +3,8 @@
     <div class="photo-background" />
     <div class="photo-wrapper clearfix">
       <div class="photo-wrapper-tip text-center">
-        <a>
-          <img class="about-photo" src="https://cdn.jsdelivr.net/gh/Thawsoar/FigureBed@master/img/avatar.jpg" alt="">
+        <a style="padding: 10px">
+          <img class="about-photo" src="https://cdn.jsdelivr.net/gh/Thawsoar/FigureBed@master/img/touxiang.jpg" alt="">
         </a>
       </div>
     </div>
@@ -39,7 +39,7 @@ export default {
           margin: -50px 0 0;
           width: 90px;
           height: 90px;
-          border: white 2px dashed;
+          border: white 2px solid;
           border-top-color: white;
           border-left-color: white;
           border-radius: 50%;
@@ -57,6 +57,7 @@ export default {
   .tips p {
     text-align: center;
     margin-top: 15px;
+    user-select: none;
     span {
       color: #51aded;
       text-shadow: 0 0 3px #fff;

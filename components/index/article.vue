@@ -4,7 +4,7 @@
       <img :src="articleData.img_url" alt="">
       <div class="info">
         <div class="header">
-          <nuxt-link :to="`/detailed/${articleData.id}`" class="label">{{articleData.labels.length && articleData.labels[0].name || 'BLOG'}}</nuxt-link>
+          <nuxt-link :to="`/detailed/${articleData.id}`" class="label">{{ articleData.labels.length && articleData.labels[0].name || 'BLOG' }}</nuxt-link>
           <h2><nuxt-link :to="`/detailed/${articleData.id}`">{{ articleData.title }}</nuxt-link></h2>
         </div>
         <p>{{ articleData.description }}</p>
@@ -18,11 +18,11 @@
             </dd>
             <dd :span="3">
               <i class="iconfont icon-comment" />
-              <a>{{articleData.comment}}条评论</a>
+              <a>{{ articleData.comment }}条评论</a>
             </dd>
             <dd :span="3">
               <i class="iconfont icon-read" />
-              <a>{{ articleData.views || 0}}阅读</a>
+              <a>{{ articleData.views || 0 }}阅读</a>
             </dd>
             <dd :span="3">
               <i class="iconfont icon-good" />

@@ -6,9 +6,9 @@
     <el-main>
       <el-row class="main-content" :gutter="15">
         <el-col :span="16">
-           <transition name="fade-transform" mode="out-in">
-             <nuxt />
-           </transition>
+          <transition name="fade-transform" mode="out-in">
+            <nuxt />
+          </transition>
         </el-col>
         <el-col class="sidebar-box" :span="8">
           <SideBar />
@@ -42,7 +42,7 @@ export default {
   },
   watch: {
     '$route': {
-       handler(val) {
+      handler(val) {
         if (process.client) {
           this.$store.commit('setHideSideBar', false)
           if (val.name === 'detailed-id') {
@@ -53,10 +53,10 @@ export default {
             }
           }
         }
-       },
-       deep: true,
-       immediate: true
-     }
+      },
+      deep: true,
+      immediate: true
+    }
   }
 }
 </script>

@@ -14,7 +14,7 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://at.alicdn.com/t/font_1809440_g1hosc3eggk.css'}
+      { rel: 'stylesheet', href: 'https://at.alicdn.com/t/font_1809440_g1hosc3eggk.css' }
     ],
     script: [
       // { src: 'https://at.alicdn.com/t/font_1809440_7f90q2uaj1m.js', async: true, defer: true }
@@ -40,7 +40,7 @@ module.exports = {
   plugins: [
     '@/plugins/element-ui',
     '@/plugins/filter',
-    '@/plugins/gravatar',
+    '@/plugins/gravatar'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -57,17 +57,16 @@ module.exports = {
     mode: 'history',
     scrollBehavior(to, from, savedPosition) {
       if (savedPosition) {
-        return savedPosition;
+        return savedPosition
       }
-      return { x: 0, y: 0 };
+      return { x: 0, y: 0 }
     }
   },
   server: {
-    port: 3000, // default: 5000
+    port: 3000 // default: 5000
   },
   axios: {
     proxy: true,
-    // baseURL: process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:7001/' : 'http://cboy.eyuanxing.cn:7001/'
     baseURL: 'http://localhost:7001/'
   },
   proxy: {

@@ -5,7 +5,7 @@ export const on = (function() {
   if (!isServer && document.addEventListener) {
     return function(element, event, handler) {
       if (element && event && handler) {
-        element.addEventListener(event, handler, false);
+        element.addEventListener(event, handler, false)
       }
     }
   }
@@ -15,12 +15,11 @@ export const off = (function() {
   if (!isServer && document.removeEventListener) {
     return function(element, event, handler) {
       if (element && event && handler) {
-        element.removeEventListener(event, handler, false);
+        element.removeEventListener(event, handler, false)
       }
     }
   }
 })()
-
 
 /**
  * 获取光标位置

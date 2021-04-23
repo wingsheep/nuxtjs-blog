@@ -3,7 +3,7 @@
     <div slot="header">
       <h1>文章归档</h1>
       <p>
-        <span>当前共有{{archiveTotal}}篇日志，记录一只菜鸟的漫漫人生路！</span>
+        <span>当前共有{{ archiveTotal }}篇日志，记录一只菜鸟的漫漫人生路！</span>
       </p>
     </div>
     <el-divider content-position="left">
@@ -23,20 +23,23 @@
           v-for="item in archiveList"
           :key="item.year"
           :hide-timestamp="true"
-          placement="top">
-           <h1 style="padding-bottom: 10px">{{item.year}}年</h1>
-           <el-timeline>
+          placement="top"
+        >
+          <h1 style="padding-bottom: 10px">{{ item.year }}年</h1>
+          <el-timeline>
             <el-timeline-item
-              class="item-month"
               v-for="monthItem in item.monthList"
               :key="monthItem.month"
-              :hide-timestamp="true" placement="top">
+              class="item-month"
+              :hide-timestamp="true"
+              placement="top"
+            >
               <h5 style="padding-bottom: 10px">
-                <span :id="monthItem.hash" class="heading">{{`${monthItem.month}月 (${monthItem.articles.length}篇)`}}</span>
+                <span :id="monthItem.hash" class="heading">{{ `${monthItem.month}月 (${monthItem.articles.length}篇)` }}</span>
               </h5>
               <el-card v-for="dayItem in monthItem.articles" :key="dayItem.id" shadow="hover">
-                <nuxt-link :to="`/detailed/${dayItem.id}`"><h3>{{dayItem.title}}</h3></nuxt-link>
-                <h4>发布于{{dayItem.created_at}}, 共编辑了{{dayItem.version + 1}}次</h4>
+                <nuxt-link :to="`/detailed/${dayItem.id}`"><h3>{{ dayItem.title }}</h3></nuxt-link>
+                <h4>发布于{{ dayItem.created_at }}, 共编辑了{{ dayItem.version + 1 }}次</h4>
               </el-card>
             </el-timeline-item>
           </el-timeline>
@@ -47,33 +50,33 @@
 </template>
 
 <script>
-  export default {
-    scrollToTop: true,
-    data() {
-      return {
-        types: ['primary', 'danger', 'warning', 'info', 'success']
-      }
+export default {
+  scrollToTop: true,
+  async fetch({ store, params }) {
+    await store.dispatch('archive/getArchive')
+  },
+  data() {
+    return {
+      types: ['primary', 'danger', 'warning', 'info', 'success']
+    }
+  },
+  computed: {
+    tagsList() {
+      return this.$store.state.tagsList
     },
-    computed: {
-      tagsList () {
-        return this.$store.state.tagsList
-      },
-      archiveList () {
-        return this.$store.state.archive.archive
-      },
-      archiveTotal () {
-        return this.$store.state.archive.archiveTotal
-      }
+    archiveList() {
+      return this.$store.state.archive.archive
     },
-    async fetch({ store, params }) {
-      await store.dispatch('archive/getArchive')
-    },
-    mounted () {
-      if (this.$route.hash) {
-        window.location.href = this.$route.hash
-      }
-    },
+    archiveTotal() {
+      return this.$store.state.archive.archiveTotal
+    }
+  },
+  mounted() {
+    if (this.$route.hash) {
+      window.location.href = this.$route.hash
+    }
   }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -107,7 +110,7 @@
         font-size: 12px;
         margin-top: 10px;
       }
-      
+
       &:hover {
         border-left: 4px solid #1BC3FB;
       }

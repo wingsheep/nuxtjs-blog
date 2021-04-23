@@ -19,7 +19,7 @@ export const mutations = {
 export const actions = {
   async getArchive({ commit }) {
     try {
-      let {data: {result, data} }= await this.$axios.get('/blog/getArchiveList')
+      const { data: { result, data }} = await this.$axios.get('/blog/getArchiveList')
       if (result) {
         data.forEach(v => {
           v.created_at = Utils.timestampToTime(v.created_at)
@@ -27,12 +27,12 @@ export const actions = {
         })
       }
 
-      function format(month, day) {
+      const format = (month, day) => {
         return month.toString().padStart(2, '0') + '.' + day.padStart(2, '0')
       }
 
       const total = data.length
-      let archive = []
+      const archive = []
       // 按年份月份重新组合
       let curYear = ''
       let curMonth = 0
@@ -40,10 +40,10 @@ export const actions = {
       let monthIndex = 0
       data.forEach(v => {
         const hash = Utils.timestampToTime(v.created_at, 'Y-m')
-        let dateArr = v.created_at.split('-')
-        let year = dateArr[0]
-        let month = parseInt(dateArr[1])
-        let time = dateArr[2].split(' ')[0]
+        const dateArr = v.created_at.split('-')
+        const year = dateArr[0]
+        const month = parseInt(dateArr[1])
+        const time = dateArr[2].split(' ')[0]
         if (year === curYear) {
           if (month === curMonth) {
             v.created_at = format(month, time)
@@ -79,5 +79,5 @@ export const actions = {
       // eslint-disable-next-line no-console
       console.log(e)
     }
-  },
+  }
 }

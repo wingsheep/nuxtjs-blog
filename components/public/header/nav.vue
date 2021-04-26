@@ -7,12 +7,12 @@
           {{ item.name }}
         </nuxt-link>
       </li>
-      <li class="list right">
+      <!-- <li class="list right">
         <nuxt-link to="/login">登录</nuxt-link>
       </li>
       <li class="list right">
         <nuxt-link to="/register">注册</nuxt-link>
-      </li>
+      </li> -->
     </ul>
   </div>
 </template>
@@ -32,21 +32,21 @@ export default {
         //   name: '网盘',
         //   icon: 'el-icon-cloudy'
         // },
-        // {
-        //   path: '/project',
-        //   name: '项目',
-        //   icon: 'el-icon-document-copy'
-        // },
-        // {
-        //   path: '/note',
-        //   name: '笔记',
-        //   icon: 'el-icon-edit-outline'
-        // },
-        // {
-        //   path: '/life',
-        //   name: '生活',
-        //   icon: 'el-icon-camera'
-        // },
+        {
+          path: '/project',
+          name: '项目',
+          icon: 'el-icon-document-copy'
+        },
+        {
+          path: '/note',
+          name: '笔记',
+          icon: 'el-icon-edit-outline'
+        },
+        {
+          path: '/life',
+          name: '游记',
+          icon: 'el-icon-camera'
+        },
         {
           path: '/archive',
           name: '归档',

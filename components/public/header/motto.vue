@@ -37,7 +37,7 @@ export default {
 .motto {
   text-align: center;
   height: 260px;
-  background: rgba(66,64,64,.2);
+  background: #ffffff40;
   // background-image: url('https://img.moedog.org/images/2019/08/21/site_head.png');
   background-position: center center;
   background-size: cover;
@@ -56,7 +56,7 @@ export default {
     position: relative;
     font-size: 22px;
     color: #fff;
-    text-shadow: 0 0 12px #fff;
+    text-shadow: 0 0 2px #000;
     width: 60%;
     margin: 0 auto;
     .word {

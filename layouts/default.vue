@@ -63,5 +63,9 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/css/animation.scss";
-
+.el-backtop {
+  // bottom: 120px!important;
+  right: 200px!important;
+  background: #ffffff30;
+}
 </style>

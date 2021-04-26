@@ -43,7 +43,8 @@
     "nodemailer": "^6.3.0",
     "nuxt": "^2.15.2",
     "passport-local": "^1.0.0",
-    "sass-loader": "^8.0.0"
+    "sass-loader": "^8.0.0",
+    "typed.js": "^2.0.12"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

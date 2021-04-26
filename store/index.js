@@ -79,6 +79,7 @@ const actions = {
         data: data3
       }
     } = await app.$axios.get('/blog/getArticleTabs')
+    console.table(data3[0])
     commit('setArticleTabs', result3 ? data3 : [])
   }
 }

@@ -9,18 +9,47 @@
       </div>
     </div>
     <div class="tips">
-      <p><span> 你好，我叫罗小黑，很高兴在此与你相遇！</span>
-      </p>
+      <p><span class="msg" /></p>
     </div>
   </el-card>
 </template>
 <script>
-export default {
+import Typed from 'typed.js'
 
+export default {
+  data() {
+    return {
+    }
+  },
+  mounted() {
+    var options = {
+      strings: ['你好，我叫<i>罗小黑</i><br />欢迎访问小站!'],
+      typeSpeed: 60,
+      showCursor: true,
+      cursorChar: '_',
+      loop: false,
+      loopCount: Infinity,
+      onComplete: (self) => {
+        console.log(self)
+      }
+    }
+    new Typed('.msg', options)
+  }
 }
 </script>
 
 <style lang="scss" scoped>
+.tips span {
+  animation: flip-in .6s 0s ease-in-out both;
+}
+@keyframes flip-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .user-info {
   .photo-background {
     height: 120px;
@@ -56,17 +85,19 @@ export default {
   }
   .tips p {
     text-align: center;
-    margin-top: 15px;
+    // margin-top: 15px;
     user-select: none;
+    color: #51aded;
+    text-shadow: 0 0 3px #fff;
     span {
       color: #51aded;
       text-shadow: 0 0 3px #fff;
     }
-    &:hover {
-      transform: scale(1.1);
-      // font-size: 16px;
-      transition: all .3s
-    }
+    // &:hover {
+    //   transform: scale(1.1);
+    //   // font-size: 16px;
+    //   transition: all .3s
+    // }
   }
 }
 </style>

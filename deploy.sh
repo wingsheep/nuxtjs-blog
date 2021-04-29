@@ -12,6 +12,7 @@ mkdir -p dist
 rsync -a .nuxt ./dist/
 cp -r static dist/
 cp package.json dist/
+cp nuxt.config.js dist/
 cd ./dist
 
 # 如果是发布到自定义域名

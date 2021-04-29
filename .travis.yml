@@ -16,6 +16,8 @@ before_install:
   -in id_rsa.enc -out ~/.ssh/id_rsa -d
 - chmod 600 ~/.ssh/id_rsa
 - chmod u+x *.sh
+install:
+- yarn install
 script:
 - sh ./deploy.sh
 after_success:

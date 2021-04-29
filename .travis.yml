@@ -26,7 +26,7 @@ after_success:
     && mv nuxtjs-blog frontend 
     && cd frontend && yarn install
     && pm2 delete 'nuxt-blog'
-    pm2 start npm --name "nuxt-blog" -- run start
+    && pm2 start npm --name "nuxt-blog" -- run start
   '
 env:
   global:

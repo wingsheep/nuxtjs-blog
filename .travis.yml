@@ -19,9 +19,9 @@ before_install:
 script:
 - sh ./deploy.sh
 after_success:
-- ssh -o StrictHostKeyChecking=no root@47.105.40.207 'cd /data/www/ && rm -rf ./frondend
+- ssh -o StrictHostKeyChecking=no root@47.105.40.207 'cd /data/www/ && rm -rf ./frontend
   && git clone -b deploy git@github.com:Thawsoar/nuxtjs-blog.git && mv nuxtjs-blog
-  frondend'
+  frontend'
 env:
   global:
   - GH_REF: github.com/Thawsoar/nuxtjs-blog.git

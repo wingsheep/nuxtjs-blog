@@ -21,6 +21,7 @@ git config --global user.name "thawsoar@gmail.com"
 
 git init
 git add *
+git add .nuxt -f
 
 git commit -m 'Travis CI Auto Builder Deploy'
 # git push --force --quiet git@github.com:Thawsoar/vue-cms.git master:deploy

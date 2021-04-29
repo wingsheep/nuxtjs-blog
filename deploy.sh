@@ -10,7 +10,6 @@ yarn build
 rm -rf ./dist
 mkdir -p dist
 cp -r .nuxt dist/
-cp -r server dist/
 cp -r static dist/
 cp package.json dist/
 cd ./dist

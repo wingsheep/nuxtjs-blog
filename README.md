@@ -1,22 +1,3 @@
-# mt-app
+# 个人博客小站
 
-> My divine Nuxt.js project
-
-## Build Setup
-
-``` bash
-# install dependencies
-$ yarn install
-
-# serve with hot reload at localhost:3000
-$ yarn dev
-
-# build for production and launch server
-$ yarn build
-$ yarn start
-
-# generate static project
-$ yarn generate
-```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+[![Build Status](https://www.travis-ci.com/Thawsoar/nuxtjs-blog.svg?branch=master)](https://www.travis-ci.com/Thawsoar/nuxtjs-blog)

@@ -9,7 +9,7 @@ yarn build
 # 进入生成的文件夹
 rm -rf ./dist
 mkdir -p dist
-cp -a .nuxt/*  dist/.nuxt
+rsync -a .nuxt ./dist/
 cp -r static dist/
 cp package.json dist/
 cd ./dist

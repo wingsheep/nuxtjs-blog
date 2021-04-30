@@ -19,6 +19,7 @@
       <my-footer />
     </el-footer>
     <SongPlayer />
+    <Live2d />
     <el-backtop target=".layout-default" />
   </el-container>
 </template>
@@ -28,13 +29,15 @@ import MyHeader from '@/components/public/header/index.vue'
 import MyFooter from '@/components/public/footer/index.vue'
 import SideBar from '@/components/public/sidebar/index.vue'
 import SongPlayer from '@/components/public/songplayer/index.vue'
+import Live2d from '@/components/public/live2d/index.vue'
 
 export default {
   components: {
     MyHeader,
     MyFooter,
     SideBar,
-    SongPlayer
+    SongPlayer,
+    Live2d
   },
   data() {
     return {

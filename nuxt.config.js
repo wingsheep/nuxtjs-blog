@@ -17,7 +17,7 @@ module.exports = {
       { rel: 'stylesheet', href: 'https://at.alicdn.com/t/font_1809440_g1hosc3eggk.css' }
     ],
     script: [
-      // { src: 'https://at.alicdn.com/t/font_1809440_7f90q2uaj1m.js', async: true, defer: true }
+      { src: 'https://eqcn.ajz.miesnfu.com/wp-content/plugins/wp-3d-pony/live2dw/lib/L2Dwidget.min.js' }
     ]
   },
   /*
@@ -30,7 +30,6 @@ module.exports = {
   css: [
     'element-ui/lib/theme-chalk/reset.css',
     'element-ui/lib/theme-chalk/index.css',
-    'aplayer/dist/APlayer.min.css',
     '@/assets/css/main.css',
     '@/assets/css/markdown/index.scss'
   ],
@@ -40,7 +39,8 @@ module.exports = {
   plugins: [
     '@/plugins/element-ui',
     '@/plugins/filter',
-    '@/plugins/gravatar'
+    '@/plugins/gravatar',
+    { src: '~/plugins/vue-aplayer', mode: 'client' },
   ],
   /*
   ** Nuxt.js dev-modules
@@ -79,7 +79,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    transpile: [/^element-ui/, 'APlayer'],
+    transpile: [/^element-ui/],
     /*
     ** You can extend webpack config here
     */

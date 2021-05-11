@@ -12,7 +12,6 @@ mkdir -p dist
 rsync -a .nuxt ./dist/
 cp -r static dist/
 cp package.json dist/
-rsync -a yarn.lock dist/
 cp nuxt.config.js dist/
 cd ./dist
 

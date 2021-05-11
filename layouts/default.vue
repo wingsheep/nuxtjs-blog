@@ -4,16 +4,16 @@
       <my-header />
     </el-header>
     <el-main>
-      <el-row class="main-content" :gutter="15">
-        <el-col :span="16">
+      <div class="main-content" :gutter="15">
+        <div class="blog-list">
           <transition name="fade-transform" mode="out-in">
             <nuxt />
           </transition>
-        </el-col>
-        <el-col class="sidebar-box" :span="8">
+        </div>
+        <div class="sidebar-box" :span="8">
           <SideBar />
-        </el-col>
-      </el-row>
+        </div>
+      </div>
     </el-main>
     <el-footer>
       <my-footer />
@@ -21,7 +21,6 @@
     <SongPlayer />
     <Live2d />
     <el-backtop target=".layout-default" />
-    
   </el-container>
 </template>
 
@@ -80,7 +79,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/css/animation.scss";
 .el-backtop {
-  right: 200px!important;
+  right: 10%!important;
   background: #ffffff30;
 }
 </style>

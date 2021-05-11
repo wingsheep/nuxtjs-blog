@@ -1,7 +1,7 @@
 <!--
  * @Author: taoxiang
  * @Date: 2021-04-30 17:31:31
- * @LastEditTime: 2021-05-11 10:30:31
+ * @LastEditTime: 2021-05-11 17:41:23
  * @LastEditors: taoxiang
  * @Description: live2d
  * @FilePath: /nuxt-blog/components/public/live2d/index.vue
@@ -17,9 +17,7 @@ export default {
     if (process.browser) {
       setTimeout(() => {
         window.L2Dwidget.init({
-          // pluginRootPath: '/live2dw/',
           pluginJsPath: 'lib/',
-          // pluginModelPath: `live2d-widget-model-shizuku/assets/`,
           tagMode: false,
           debug: false,
           model: {
@@ -27,13 +25,13 @@ export default {
           },
           display: {
             position: 'right',
-            width: 110,
+            width: 100,
             height: 200,
             hOffset: 30,
             vOffset: -45
           },
-          react: { opacity: 0.7 },
-          mobile: { show: true },
+          // react: { opacity: 1 },
+          mobile: { show: false },
           log: false
         })
       }, 400)
@@ -42,6 +40,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
+<style lang=scss>
+@media(max-width: 1400px) {
+  #live2d-widget {
+    display: none;
+  }
+}
 </style>

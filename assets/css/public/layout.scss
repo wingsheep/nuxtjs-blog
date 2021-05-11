@@ -24,14 +24,27 @@
     overflow: unset;
   }
   .el-main {
-    width: 1170px;
-    .main-content > .el-col:nth-child(1) > div {
-      // width: 750px;
+    max-width: 1170px;
+    .main-content .blog-list {
+      width: calc(100% - 390px);
+      float: left;
       height: 100%;
     }
     .sidebar-box {
+      float: right;
       position: sticky;
       top: 60px;
+    }
+    @media(max-width: 960px) {
+      .main-content {
+        padding: 0 30px;
+        .blog-list {
+          width: 100%;
+        }
+      }
+      .sidebar-box {
+        display: none;
+      }
     }
   }
 }

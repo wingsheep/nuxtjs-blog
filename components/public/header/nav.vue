@@ -2,10 +2,15 @@
   <div class="m-nav">
     <ul class="nav">
       <li v-for="(item, index) in navList" :key="index" class="list">
-        <nuxt-link :to="item.path">
-          <i :class="item.icon" />
-          {{ item.name }}
-        </nuxt-link>
+        <template v-if="!item.outLink">
+          <nuxt-link :to="item.path">
+            <i :class="item.icon" />
+            {{ item.name }}
+          </nuxt-link>
+        </template>
+        <template v-else>
+          <a href="https://thawsoar.github.io/docs/" target="_blank"><i :class="item.icon" />{{ item.name }}</a>
+        </template>
       </li>
       <!-- <li class="list right">
         <nuxt-link to="/login">登录</nuxt-link>
@@ -40,7 +45,8 @@ export default {
         {
           path: '/note',
           name: '笔记',
-          icon: 'el-icon-edit-outline'
+          icon: 'el-icon-edit-outline',
+          outLink: 'https://thawsoar.github.io/docs/'
         },
         {
           path: '/life',

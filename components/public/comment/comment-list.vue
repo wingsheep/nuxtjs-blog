@@ -1,7 +1,8 @@
 <template>
   <ul class="comment-list">
     <li v-for="comment in comments" :key="comment.id" class="comment-item">
-      <img class="avatar" :src="gravatar(comment.user_email)" :alt="comment.user_nickname || '匿名用户'">
+      <img v-show="!comment.flag" class="avatar" :src="gravatar(comment.user_email)" :alt="comment.user_nickname || '匿名用户'" @error="hide(comment)">
+      <span v-show="comment.flag" class="avatar" :style="{backgroundColor: randomRgbColor()}">{{ comment.user_nickname.slice(0, 1) }}</span>
       <section class="comment-detail markdown">
         <div class="nickname">
           <!-- <a v-if="comment.user_url" class="website icon icon-planet" :href="comment.user_url" target="_blank"></a> -->
@@ -65,6 +66,16 @@ export default {
   },
 
   methods: {
+    randomRgbColor() {
+      const r = Math.floor(Math.random() * 256) // 随机生成256以内r值
+      const g = Math.floor(Math.random() * 256) // 随机生成256以内g值
+      const b = Math.floor(Math.random() * 256) // 随机生成256以内b值
+      return `rgb(${r},${g},${b})` // 返回rgb(r,g,b)格式颜色
+    },
+    hide(item) {
+      item.flag = true
+      this.$forceUpdate()
+    },
     isLike(commentId) {
       return this.likeComments.includes(commentId)
     },
@@ -134,6 +145,8 @@ export default {
     height: 36px;
     border-radius: 50%;
     background-color: #eee;
+    line-height: 36px;
+    color: #fff;
   }
 
   .comment-detail {

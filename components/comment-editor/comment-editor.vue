@@ -1,6 +1,7 @@
 <template>
   <div class="editor-container" :class="{'message-container': isMessageEditor}">
-    <img v-if="!isMessageEditor" class="avatar" :src="avatar" :alt="form.nickname || '匿名用户'">
+    <img v-if="!isMessageEditor && !flag" class="avatar" :src="avatar" :alt="form.nickname || '匿名用户'" @load="flag = false" @error="flag = true">
+    <span v-show="flag" class="avatar" :style="{backgroundColor: 'green'}">{{ form.nickname ? form.nickname.slice(0, 1) : '匿' }}</span>
     <section class="comment-wrapper">
       <transition-group class="slide-wrapper" tag="div" name="list-slide">
         <!-- 回复内容区域 -->
@@ -95,7 +96,6 @@ const emojiList = [
 ]
 
 export default {
-
   directives: {
     ClickOutside
   },
@@ -117,6 +117,7 @@ export default {
 
   data() {
     return {
+      flag: false,
       isShowEmoji: false,
       contentText: '',
       contentHtml: '',
@@ -316,7 +317,8 @@ export default {
   height: 36px;
   border-radius: 50%;
   background-color: #eee;
-
+  line-height: 36px;
+  color: #fff;
   @media (max-width: 479px) {
     display: none;
   }

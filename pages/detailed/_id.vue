@@ -132,7 +132,6 @@ export default {
       articleId: params.id
     })
   },
-
   mounted() {
     this.$nextTick(() => {
       this.id = this.$route.params.id

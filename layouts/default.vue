@@ -21,6 +21,7 @@
     <SongPlayer />
     <Live2d />
     <el-backtop target=".layout-default" />
+    
   </el-container>
 </template>
 
@@ -60,6 +61,18 @@ export default {
       deep: true,
       immediate: true
     }
+  },
+  created() {
+    this.openMsg()
+  },
+  methods: {
+    openMsg() {
+      const h = this.$createElement
+      this.$notify({
+        title: '紧急通知',
+        message: h('i', { style: 'color: red' }, '公司倒闭，老板跑路，走过路过不要错过，救救孩子吧 Min Na！')
+      })
+    }
   }
 }
 </script>
@@ -67,7 +80,6 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/css/animation.scss";
 .el-backtop {
-  // bottom: 120px!important;
   right: 200px!important;
   background: #ffffff30;
 }

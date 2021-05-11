@@ -1,7 +1,7 @@
 <!--
  * @Author: taoxiang
  * @Date: 2021-04-30 17:31:31
- * @LastEditTime: 2021-04-30 17:39:09
+ * @LastEditTime: 2021-05-11 10:30:31
  * @LastEditors: taoxiang
  * @Description: live2d
  * @FilePath: /nuxt-blog/components/public/live2d/index.vue
@@ -27,9 +27,9 @@ export default {
           },
           display: {
             position: 'right',
-            // width: 220,
-            // height: 400,
-            // hOffset: 30,
+            width: 110,
+            height: 200,
+            hOffset: 30,
             vOffset: -45
           },
           react: { opacity: 0.7 },

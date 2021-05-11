@@ -61,7 +61,7 @@ export default {
     ]
     tabsList.forEach(item => {
       item.active = false
-      if (item.CODE == params.id) {
+      if (item.CODE === params.id) {
         item.active = true
       }
     })

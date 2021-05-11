@@ -13,12 +13,10 @@
 
 <script>
 import topBar from './topbar.vue'
-import searchBar from './searchbar.vue'
 import motto from './motto.vue'
 export default {
   components: {
     topBar,
-    searchBar,
     motto
   }
 }

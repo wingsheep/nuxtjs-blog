@@ -30,7 +30,7 @@ export default {
             artist: artists.join('/'), // 音频艺术家
             url: url, // 音频播放地址
             cover: picture, // 音频封面
-            lrc: base, // lrc 歌词
+            lrc: base || null, // lrc 歌词
             // theme?: string; // 单曲主题色，它将覆盖全局的默认主题色
             type: type // 指定音频的类型
           }

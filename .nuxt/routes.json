@@ -1,0 +1,93 @@
+[
+  {
+    "name": "about",
+    "path": "/about",
+    "component": "/home/travis/build/Thawsoar/nuxtjs-blog/pages/about.vue",
+    "chunkName": "pages/about",
+    "_name": "_b116b35c"
+  },
+  {
+    "name": "archive",
+    "path": "/archive",
+    "component": "/home/travis/build/Thawsoar/nuxtjs-blog/pages/archive.vue",
+    "chunkName": "pages/archive",
+    "_name": "_48806c72"
+  },
+  {
+    "name": "book",
+    "path": "/book",
+    "component": "/home/travis/build/Thawsoar/nuxtjs-blog/pages/book.vue",
+    "chunkName": "pages/book",
+    "_name": "_3b022e98"
+  },
+  {
+    "name": "friend",
+    "path": "/friend",
+    "component": "/home/travis/build/Thawsoar/nuxtjs-blog/pages/friend.vue",
+    "chunkName": "pages/friend",
+    "_name": "_e87295ae"
+  },
+  {
+    "name": "life",
+    "path": "/life",
+    "component": "/home/travis/build/Thawsoar/nuxtjs-blog/pages/life.vue",
+    "chunkName": "pages/life",
+    "_name": "_b795c972"
+  },
+  {
+    "name": "login",
+    "path": "/login",
+    "component": "/home/travis/build/Thawsoar/nuxtjs-blog/pages/login.vue",
+    "chunkName": "pages/login",
+    "_name": "_de57b7a4"
+  },
+  {
+    "name": "project",
+    "path": "/project",
+    "component": "/home/travis/build/Thawsoar/nuxtjs-blog/pages/project.vue",
+    "chunkName": "pages/project",
+    "_name": "_64ec309e"
+  },
+  {
+    "name": "register",
+    "path": "/register",
+    "component": "/home/travis/build/Thawsoar/nuxtjs-blog/pages/register.vue",
+    "chunkName": "pages/register",
+    "_name": "_c5214424"
+  },
+  {
+    "name": "article-page",
+    "path": "/article/:page?",
+    "component": "/home/travis/build/Thawsoar/nuxtjs-blog/pages/article/_page.vue",
+    "chunkName": "pages/article/_page",
+    "_name": "_25f81eda"
+  },
+  {
+    "name": "detailed-id",
+    "path": "/detailed/:id?",
+    "component": "/home/travis/build/Thawsoar/nuxtjs-blog/pages/detailed/_id.vue",
+    "chunkName": "pages/detailed/_id",
+    "_name": "_aaa064b4"
+  },
+  {
+    "name": "follow-id",
+    "path": "/follow/:id?",
+    "component": "/home/travis/build/Thawsoar/nuxtjs-blog/pages/follow/_id.vue",
+    "chunkName": "pages/follow/_id",
+    "_name": "_1790b467"
+  },
+  {
+    "name": "category-name-id",
+    "path": "/category/:name?/:id?",
+    "component": "/home/travis/build/Thawsoar/nuxtjs-blog/pages/category/_name/_id.vue",
+    "chunkName": "pages/category/_name/_id",
+    "_name": "_5d662662"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/home/travis/build/Thawsoar/nuxtjs-blog/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_71a6fdd2"
+  }
+]

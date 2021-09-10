@@ -1,0 +1,35 @@
+{
+  "entry": "server.js",
+  "files": {
+    "pages/about.js": "pages/about.js",
+    "pages/archive.js": "pages/archive.js",
+    "pages/article/_page.js": "pages/article/_page.js",
+    "pages/book.js": "pages/book.js",
+    "pages/category/_name/_id.js": "pages/category/_name/_id.js",
+    "pages/detailed/_id.js": "pages/detailed/_id.js",
+    "pages/follow/_id.js": "pages/follow/_id.js",
+    "pages/friend.js": "pages/friend.js",
+    "pages/index.js": "pages/index.js",
+    "pages/life.js": "pages/life.js",
+    "pages/login.js": "pages/login.js",
+    "pages/project.js": "pages/project.js",
+    "pages/register.js": "pages/register.js",
+    "server.js": "server.js"
+  },
+  "maps": {
+    "pages/about.js": "pages/about.js.map",
+    "pages/archive.js": "pages/archive.js.map",
+    "pages/article/_page.js": "pages/article/_page.js.map",
+    "pages/book.js": "pages/book.js.map",
+    "pages/category/_name/_id.js": "pages/category/_name/_id.js.map",
+    "pages/detailed/_id.js": "pages/detailed/_id.js.map",
+    "pages/follow/_id.js": "pages/follow/_id.js.map",
+    "pages/friend.js": "pages/friend.js.map",
+    "pages/index.js": "pages/index.js.map",
+    "pages/life.js": "pages/life.js.map",
+    "pages/login.js": "pages/login.js.map",
+    "pages/project.js": "pages/project.js.map",
+    "pages/register.js": "pages/register.js.map",
+    "server.js": "server.js.map"
+  }
+}
